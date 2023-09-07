@@ -35,7 +35,7 @@ class OrderStatus extends Model {
     protected $fillable = [ 'name' ];
 
     protected $casts = [
-        'name' => \App\Enums\OrderStatus::class
+        'name' => 'string'
     ];
 
     public function orders(): HasMany {
