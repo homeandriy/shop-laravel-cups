@@ -5,17 +5,25 @@ require 'recipe/laravel.php';
 
 // Config
 
-set('repository', 'homeandriy/laravel-test');
+set('default_stage', 'staging');
+set('application', 'Laravel Shop');
+set('repository', 'https://github.com/homeandriy/shop-laravel-cups.git');
 
-add('shared_files', []);
-add('shared_dirs', []);
-add('writable_dirs', []);
+set('branch', 'main');
+set('git_tty', false);
+
+//add('shared_files', []);
+//add('shared_dirs', []);
+//add('writable_dirs', []);
 
 // Hosts
 
 host('185.185.126.143')
-    ->set('remote_user', 'root')
-    ->set('deploy_path', '/www/wwwroot/web-utilities.pp.ua');
+    ->setHostname('185.185.126.143')
+    ->setRemoteUser('root')
+    ->setDeployPath('/www/wwwroot/web-utilities.pp.ua')
+    ->setIdentityFile('/home/homeandriy/id_rsa.pub')
+    ->set ('ssh_multiplexing', false);
 
 // Hooks
 

@@ -8,24 +8,25 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('answer_type', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('order_id')->constrained('orders');
+            $table->string('payment_system');
+            $table->string('status');
+
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('answer_type');
+        Schema::dropIfExists('transactions');
     }
 };
