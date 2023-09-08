@@ -13,7 +13,7 @@
                     <div class="banner-area__content">
                         <h2>Кружки та футболки з унікальним дизайном</h2>
                         <p>Купуйте в нашому магазині</p>
-                        <a class="btn bg-primary" href="{{ route('home') }}">Вибрати підходящу</a>
+                        <a class="btn bg-primary" href="{{ route('shop') }}">Вибрати підходящу</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">

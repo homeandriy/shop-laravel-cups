@@ -22,7 +22,7 @@
                                     </svg>
                                 </div>
                                 <div class="text">
-                                    <span>olog.wetbise@mail.com</span>
+                                    <span>admin@web-utilities.pp.ua</span>
                                 </div>
                             </div>
                             <div class="cta">
@@ -38,27 +38,11 @@
                                     </svg>
                                 </div>
                                 <div class="text">
-                                    <span>+8801658 874521</span>
+                                    <span>+380666653***</span>
                                 </div>
                             </div>
                         </div>
                         <div class="header-top-switcher">
-                            <div class="language">
-                                <select>
-                                    <option data-display="English">English</option>
-                                    <option value="1">Arabic</option>
-                                    <option value="2">Aramaic</option>
-                                    <option value="4">Bangla</option>
-                                </select>
-                            </div>
-                            <div class="currency">
-                                <select>
-                                    <option data-display="Currency">USD</option>
-                                    <option value="1">BDT</option>
-                                    <option value="2">SNG</option>
-                                    <option value="4">ERU</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,10 +78,12 @@
                                 <li><a href="javascript:void(0)">Category 5</a></li>
                             </ul>
                         </li>
-                        <li><a href="javascript:void(0)">Sales</a></li>
+                        <li><a href="{{ route('shop') }}">Блог</a></li>
+                        <li><a href="{{ route('shop') }}">Створити дизайн</a></li>
+                        <li><a href="{{ route('shop') }}">Контакти</a></li>
                     </ul>
                     <div class="search-bar">
-                        <input type="text" placeholder="Search for product...">
+                        <input type="text" placeholder="Пошук по каталогу....">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20.414" height="20.414"
                                  viewBox="0 0 20.414 20.414">
@@ -129,7 +115,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="cart.html"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#cart-modal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                                          viewBox="0 0 22 22">
                                         <g id="Icon" transform="translate(-1524 -89)">
                                             <ellipse id="Ellipse_2" data-name="Ellipse 2" cx="0.909" cy="0.952"

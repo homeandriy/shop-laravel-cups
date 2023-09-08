@@ -83,6 +83,7 @@
             </div>
         </div>
     </div>
+    @include('components.front.cart')
 </footer>
 <!-- Footer -->
 <script>
