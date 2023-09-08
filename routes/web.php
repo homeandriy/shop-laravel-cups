@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
+Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop');
+Route::name('products.')->prefix('products')->group(function (){
+    Route::get('{product:slug}', [\App\Http\Controllers\ShopController::class, 'show'])->name('show');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
