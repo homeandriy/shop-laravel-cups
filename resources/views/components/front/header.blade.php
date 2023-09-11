@@ -22,7 +22,7 @@
                                     </svg>
                                 </div>
                                 <div class="text">
-                                    <span>admin@web-utilities.pp.ua</span>
+                                    <span>{{ env('ADMIN_EMAIL', 'admin@'.request()->getHost()) }}</span>
                                 </div>
                             </div>
                             <div class="cta">
@@ -38,7 +38,7 @@
                                     </svg>
                                 </div>
                                 <div class="text">
-                                    <span>+380666653***</span>
+                                    <span>{{ env('PHONE_KYIVSTAR') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -58,9 +58,8 @@
                     </div>
                     <ul class="main-menu d-flex align-items-center">
                         <li><a class="active" href="{{ route('home') }}">Головна</a></li>
-                        <li><a href="{{ route('shop') }}">Продукція</a></li>
                         <li>
-                            <a href="javascript:void(0)">Category
+                            <a href="{{ route('shop') }}">Продукція
                                 <svg xmlns="http://www.w3.org/2000/svg" width="9.98" height="5.69"
                                      viewBox="0 0 9.98 5.69">
                                     <g id="Arrow" transform="translate(0.99 0.99)">
@@ -71,11 +70,9 @@
                                 </svg>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="javascript:void(0)">Category 1</a></li>
-                                <li><a href="javascript:void(0)">Category 2</a></li>
-                                <li><a href="javascript:void(0)">Category 3</a></li>
-                                <li><a href="javascript:void(0)">Category 4</a></li>
-                                <li><a href="javascript:void(0)">Category 5</a></li>
+                                @foreach(\App\Models\Category::all() as $category)
+                                    <li><a href="/shop/{{ $category->slug }}">{{ $category->name }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li><a href="{{ route('shop') }}">Блог</a></li>

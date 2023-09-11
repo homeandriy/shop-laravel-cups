@@ -4,6 +4,9 @@
  * @var \App\Models\Product[] $products
  */
 ?>
+@section('title', 'Головна сторінка - '. Config::get('app.name'))
+@section('description', 'Головна сторінка - '. Config::get('app.name'))
+@section('keywords', 'Кружки, футболки')
 <x-app-layout>
     <!--Banner Area Start -->
     <section class="banner-area">

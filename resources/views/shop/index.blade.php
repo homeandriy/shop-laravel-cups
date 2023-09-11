@@ -11,7 +11,7 @@
                 <div class="col-lg-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Головна</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Головна</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Продукція</li>
                         </ol>
                     </nav>
@@ -91,7 +91,7 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="product-item">
                             <div class="product-item-image">
-                                <a href="product-details.html">
+                                <a href="{{ route('products.show', $product) }}">
                                     <img src="{{ $product->thumbnailUrl }}" alt="{{ $product->title }}" class="img-fluid">
                                 </a>
                                 <div class="cart-icon">
@@ -121,8 +121,11 @@
                                 </div>
                             </div>
                             <div class="product-item-info">
-                                <a href="product-details.html">{{ $product->title }}</a>
-                                <span>$975</span> <del>$999</del>
+                                <a href="{{ route('products.show', $product) }}">{{ $product->title }}</a>
+                                <span>${{ $product->endPrice }} ₴</span>
+                                @if($product->price !== $product->endPrice)
+                                    <del class="old-price">{{ $product->price }} ₴</del>
+                                @endif
                             </div>
                         </div>
                     </div>
