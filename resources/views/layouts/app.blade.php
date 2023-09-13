@@ -25,5 +25,12 @@
         {{ $slot }}
     </main>
     @include('components.front.footer')
+
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.exzoom.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
     </body>
 </html>

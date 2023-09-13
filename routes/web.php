@@ -22,6 +22,10 @@ Route::name('products.')->prefix('products')->group(function (){
 });
 
 Route::get('checkout', \App\Http\Controllers\CheckoutController::class)->name('checkout');
+Route::get('mail', function () {
+    Mail::to( 'homeandriy@gmail.com' )
+        ->send( new \App\Mail\MyTestEmail() );
+})->name('mail');
 
 Route::name('cart.')->prefix('cart')->group(function() {
     Route::get('/', [\App\Http\Controllers\CartController::class, 'index'])->name('index');

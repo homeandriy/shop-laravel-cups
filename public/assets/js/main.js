@@ -101,21 +101,22 @@ $(document).ready(function () {
     ],
   });
 
+    if ( $("#exzoom").length) {
+        //Product Details Slider
+        $("#exzoom").exzoom({
+            // thumbnail nav options
+            "navWidth": 60,
+            "navHeight": 60,
+            "navItemNum": 5,
+            "navItemMargin": 7,
+            "navBorder": 0,
+            // autoplay
+            "autoPlay": false,
+            // autoplay interval in milliseconds
+            "autoPlayTimeout": 2000
 
-  //Product Details Slider
-  // $("#exzoom").exzoom({
-  //   // thumbnail nav options
-  //   "navWidth": 60,
-  //   "navHeight": 60,
-  //   "navItemNum": 5,
-  //   "navItemMargin": 7,
-  //   "navBorder": 0,
-  //   // autoplay
-  //   "autoPlay": false,
-  //   // autoplay interval in milliseconds
-  //   "autoPlayTimeout": 2000
-  //
-  // });
+        });
+    }
 
   //Active size
   $('#sizes li').on('click', function () {

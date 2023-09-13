@@ -9774,7 +9774,7 @@ footer {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    min-width: 406px;
+    min-width: 300px;
     position: relative;
     margin-left: 50px; }
     .header-bottom .search-bar input {
