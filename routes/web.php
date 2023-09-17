@@ -49,7 +49,9 @@ require __DIR__.'/auth.php';
 Route::name('admin.')->prefix('admin')->middleware(['role:admin|moderator'])->group(function() {
     Route::get('dashboard', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
     Route::resource('products', \App\Http\Controllers\Admin\ProductsController::class)->except(['show']);
-    Route::post('products/{product}/variation', [\App\Http\Controllers\Admin\ProductsController::class, 'updateVariation'])->name('products.variation-update');
+    Route::put('products/{product}/variation/update', [\App\Http\Controllers\Admin\ProductsController::class, 'updateVariation'])->name('products.variation-update');
+    Route::post('products/{product}/variation/create', [\App\Http\Controllers\Admin\ProductsController::class, 'createVariation'])->name('products.variation-create');
+    Route::post('products/{product}/variation/delete', [\App\Http\Controllers\Admin\ProductsController::class, 'deleteVariation'])->name('products.variation-delete');
     Route::resource('categories', \App\Http\Controllers\Admin\CategoriesController::class)->except(['show']);
     Route::resource('brands', \App\Http\Controllers\Admin\BrandsController::class)->except(['show']);
     Route::resource('colors', \App\Http\Controllers\Admin\ColorsController::class)->except(['show']);

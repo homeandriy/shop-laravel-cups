@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\UpdateVariationRequest;
 use App\Models\Attributes\Brand;
 use App\Models\Attributes\Color;
 use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\Contracts\ProductRepositoryContract;
+use App\Repositories\ProductVariationRepository;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller {
@@ -76,7 +78,16 @@ class ProductsController extends Controller {
 
         return redirect()->route( 'admin.products.index' );
     }
-    public function updateVariation(Request $request, Product $product) {
+    public function updateVariation(UpdateVariationRequest $request, Product $product, ProductVariationRepository $repository) {
+        $request['active'] = request()->has('active') ? 1 : 0;
+        return $repository->update($request, $product)
+            ? redirect()->route( 'admin.products.edit', $product )
+            : redirect()->back()->withInput();
+    }
+    public function createVariation(Request $request, Product $product) {
+        dd($request);
+    }
+    public function deleteVariation(Request $request, Product $product) {
         dd($request);
     }
 }

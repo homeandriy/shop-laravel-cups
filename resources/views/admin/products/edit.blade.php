@@ -15,6 +15,11 @@
             <span class="text-muted fw-light"><a href="{{ route('admin.products.index') }}">Товари</a></span>/
             Редагування {{ $product->title }}
         </h4>
+        @if($errors->any())
+        <div class="col-lg-12">
+            <div class="alert alert-danger" role="alert">{{ implode('<br>', $errors->all(':message')) }}</div>
+        </div>
+        @endif
         <div class="col-xl-12">
             <div class="nav-align-top mb-4">
                 <ul class="nav nav-pills mb-3" role="tablist">
@@ -150,43 +155,95 @@
                     <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('admin.products.variation-update', $product) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-
                                     @if($product->colors()->count())
+                                        @php
+                                        $i = 0;
+                                        @endphp
                                         @foreach($product->colors()->get() as $variation)
-                                            <div class="row">
+                                        <form action="{{ route('admin.products.variation-update', $product) }}" method="POST" id="variation-form-{{ $variation->id }}">
+                                            @csrf
+                                            @method('PUT')
+                                            <div id="row-{{ $i }}" class="row">
                                                 <div class="col-md-12">
                                                     <div class="d-inline-flex gap-2">
-                                                        <input type="hidden" name="id[{{ $variation->id }}][]" value="{{ $variation->id }}">
+                                                        <input type="hidden" name="id" value="{{ $variation->id }}">
                                                         <div class="mt-2 mb-3">
-                                                            <label for="product-parent" class="form-label">Select categories</label>
-                                                            <select id="product-parent" class="form-select form-select-lg" name="color[{{ $variation->id }}][]">
+                                                            <label for="product-parent-{{ $i }}" class="form-label">Select categories</label>
+                                                            <select id="product-parent-{{ $i }}" class="form-select form-select-lg" name="color">
                                                                 @foreach($colors as $basicColor)
                                                                     <option value="{{ $basicColor->id }}" @selected($basicColor->id === $variation->pivot->color_id)>{{ $basicColor->hex }}</option>
                                                                 @endforeach
                                                             </select>
-                                                      </div>
-                                                        <div class="mt-2 mb-3">
-                                                            <label class="form-label" for="product-quantity">Quantity</label>
-                                                            <input type="number" step="1" min="1" class="form-control form-control-lg" id="product-quantity" placeholder="Quantity" name="quantity" aria-describedby="product-quantity-helper" value="{{ $variation->pivot->quantity }}">
                                                         </div>
                                                         <div class="mt-2 mb-3">
-                                                            <label class="form-label" for="product-quantity">Price</label>
-                                                            <input type="number" step="1" min="1" class="form-control form-control-lg" id="product-quantity" placeholder="Quantity" name="quantity" aria-describedby="product-quantity-helper" value="{{ $variation->pivot->price }}">
+                                                            <label class="form-label" for="product-price-{{ $i }}">Ціна в гривнях</label>
+                                                            <input type="number" class="form-control form-control-lg" id="product-price-{{ $i }}" placeholder="Price" name="price" aria-describedby="product-price-helper" value="{{ $variation->pivot->price }}">
+                                                        </div>
+                                                        <div class="mt-2 mb-3">
+                                                            <label class="form-label" for="product-quantity-{{ $i }}">Кількість</label>
+                                                            <input type="number" step="1" min="1" class="form-control form-control-lg" id="product-quantity-{{ $i }}" placeholder="Quantity" name="quantity" aria-describedby="product-quantity-helper" value="{{ $variation->pivot->quantity }}">
+                                                        </div>
+                                                        <div class="mt-2 mb-3">
+                                                            <div class="form-check form-switch mb-2">
+                                                                <input class="form-check-input" type="checkbox" name="active" id="flexSwitchCheckChecked" @checked((int)$variation->pivot->active === 1)>
+                                                                <label class="form-check-label" for="flexSwitchCheckChecked">Увімкнена</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-2 mb-3 align-content-center">
+                                                            <button class="btn btn-warning del-variation" data-variation="{{$variation->id}}" style="margin-top: 20%;">Обновити варіацію</button>
+                                                        </div>
+                                                        <div class="mt-2 mb-3 align-content-center">
+                                                            <button class="btn btn-danger del-variation" data-variation="{{$variation->id}}" style="margin-top: 20%;">Видалити варіацію</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </form>
+                                            @php
+                                            $i++;
+                                            @endphp
                                         @endforeach
                                     @endif
+                                <form action="{{ route('admin.products.variation-create', $product) }}" method="POST" id="variation-form">
+                                    @csrf
+                                    @method('POST')
                                 </form>
+                                <button class="btn btn-success" data-count="{{$i}}" id="add-variations">Додати варіацію</button>
                             </div>
+                            <button class="btn btn-warning" data-count="{{$i}}" id="add-variations">Зберегти нові варіації</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="template" id="repeat-template">
+        <div id="row-__i__" class="row">
+            <div class="col-md-12">
+                <div class="d-inline-flex gap-2">
+                    <input type="hidden" name="id[__i__}][]" value="">
+                    <div class="mt-2 mb-3">
+                        <label for="product-parent-__i__" class="form-label">Select categories</label>
+                        <select id="product-parent-__i__" class="form-select form-select-lg" name="color[__i__][]">
+                            @foreach($colors as $basicColor)
+                                <option value="{{ $basicColor->id }}">{{ $basicColor->hex }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mt-2 mb-3">
+                        <label class="form-label" for="product-price-__i__">Ціна в гривнях</label>
+                        <input type="number" class="form-control form-control-lg" id="product-price-__i__" placeholder="Price" name="price[__i__][]" aria-describedby="product-price-helper" value="">
+                    </div>
+                    <div class="mt-2 mb-3">
+                        <label class="form-label" for="product-quantity-__i__">Кількість</label>
+                        <input type="number" step="1" min="1" class="form-control form-control-lg" id="product-quantity-__i__" placeholder="Quantity" name="quantity[__i__][]" aria-describedby="product-quantity-helper" value="">
+                    </div>
+                    <div class="mt-2 mb-3 align-content-center">
+                        <button class="btn btn-danger del-variation" data-variation="__i__" style="margin-top: 20%;">Видалити варіацію</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    @vite('resources/js/admin/products/index.js')
 </x-admin-layout>
