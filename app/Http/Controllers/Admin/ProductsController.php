@@ -18,7 +18,7 @@ class ProductsController extends Controller {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, ProductRepositoryContract $repository) {
+    public function index( Request $request, ProductRepositoryContract $repository ) {
         $products = Product::with( 'categories', 'colors', 'brand' )->orderByDesc( 'id' )->paginate( 5 );
 
         return view(
@@ -32,8 +32,8 @@ class ProductsController extends Controller {
      */
     public function create() {
         $categories = Category::all();
-        $brands = Brand::all();
-        $colors = Color::all();
+        $brands     = Brand::all();
+        $colors     = Color::all();
 
         return view( 'admin.products.create', compact( 'categories', 'brands', 'colors' ) );
     }
@@ -42,7 +42,6 @@ class ProductsController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store( CreateProductRequest $request, ProductRepositoryContract $repository ) {
-
         return $repository->create( $request )
             ? redirect()->route( 'admin.products.index' )
             : redirect()->back()->withInput();
@@ -54,10 +53,11 @@ class ProductsController extends Controller {
     public function edit( Product $product ) {
         $categories           = Category::all();
         $productCategoriesIds = $product->categories()->select( 'category_id' )->pluck( 'category_id' );
-        $brands = Brand::all();
-        $colors = Color::all();
+        $brands               = Brand::all();
+        $colors               = Color::all();
 
-        return view( 'admin.products.edit', compact( 'product', 'categories', 'productCategoriesIds', 'brands', 'colors' ) );
+        return view( 'admin.products.edit',
+            compact( 'product', 'categories', 'productCategoriesIds', 'brands', 'colors' ) );
     }
 
     /**
@@ -78,16 +78,45 @@ class ProductsController extends Controller {
 
         return redirect()->route( 'admin.products.index' );
     }
-    public function updateVariation(UpdateVariationRequest $request, Product $product, ProductVariationRepository $repository) {
-        $request['active'] = request()->has('active') ? 1 : 0;
-        return $repository->update($request, $product)
+
+    public function updateVariation(
+        UpdateVariationRequest $request,
+        Product $product,
+        ProductVariationRepository $repository
+    ) {
+        $request['active'] = request()->has( 'active' ) ? 1 : 0;
+
+        return $repository->update( $request, $product )
             ? redirect()->route( 'admin.products.edit', $product )
             : redirect()->back()->withInput();
     }
-    public function createVariation(Request $request, Product $product) {
-        dd($request);
+
+    public function createVariation(
+        Request $request,
+        Product $product,
+        ProductVariationRepository $repository
+    ) {
+        $data = [];
+        $ids  = array_keys($request->request->all('id'));
+        foreach ( $request->request as $key => $postData ) {
+            if ( is_array( $postData ) ) {
+                foreach ( $ids as $id ) {
+                    if(isset($postData[$id])) {
+                        $data[ $id ][ $key ] = $postData[$id][0];
+                        $data[ $id ]['active'] = 1;
+                    }
+                }
+            }
+        }
+//        dd($data);
+        return $repository->createVariation( $data, $product )
+            ? redirect()->route( 'admin.products.edit', $product )
+            : redirect()->back()->withInput();
     }
-    public function deleteVariation(Request $request, Product $product) {
-        dd($request);
+
+    public function deleteVariation( Request $request, Product $product, ProductVariationRepository $repository ) {
+        return $repository->deleteVariation( $request->get('id'), $product )
+            ? redirect()->route( 'admin.products.edit', $product )
+            : redirect()->back()->withInput();
     }
 }

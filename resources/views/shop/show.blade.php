@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Models\Product $product
+ * @var \App\Models\Attributes\Color $color
  * @var \App\Models\Product[] $productsFeatures
  */
 ?>
@@ -47,10 +48,13 @@
                 </div>
                 <div class="col-lg-6 col-md-7 col-12">
                     <div class="product-pricelist">
-                        <h2>Disposable Face Masks, Blue Face Masks</h2>
+                        <h2>{{ $product->title }}</h2>
                         <div class="product-pricelist-ratting">
                             <div class="price">
-                                <span>$9.99</span> <del>$11.99</del>
+                                <span>${{ $product->endPrice }} ₴</span>
+                                @if($product->price !== $product->endPrice)
+                                    <del class="old-price">{{ $product->price }} ₴</del>
+                                @endif
                             </div>
                             <div class="star">
                                 <ul>
@@ -60,16 +64,13 @@
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
                                     <li>5.0</li>
-                                    <li class="point">(500 Rating)</li>
+                                    <li class="point">({{ mt_rand(1, 255) }} Rating)</li>
                                 </ul>
                             </div>
                         </div>
-                        <p>Disposable Face Masks: 3-Layers Protection, the inner layer is a soft non-woven fabric,
-                            which can absorb the moisture from the breath of the wearer. The middle layer is a
-                            melt-blown polypropylene filtration layer for better filter out the particles in the
-                            air. The outer layer is a water-resistant layer which can block the splashing liquid in
-                            the air.</p>
+                        <p>{{ $product->description }}</p>
                         <div class="product-pricelist-selector">
+                            @if(false)
                             <div class="product-pricelist-selector-size">
                                 <h6>Sizes</h6>
                                 <div class="sizes" id="sizes">
@@ -80,15 +81,21 @@
                                     <li class="sizes-all">XXL</li>
                                 </div>
                             </div>
+                            @endif
+                            @if($product->colors()->count())
                             <div class="product-pricelist-selector-color">
-                                <h6>Colors</h6>
+                                <h6>Колір кружки</h6>
                                 <div class="colors" id="colors">
-                                    <li class="colorall color-1 active"></li>
-                                    <li class="colorall color-2"></li>
+                                    @foreach($product->colors()->get() as $colorProduct)
+                                        <a href="{{ route('products.show', [$product, $colorProduct->pivot->color_id]) }}">
+                                            <li class="colorall @if($colorProduct->pivot->color_id === $color->id) active @endif" style="background-color: {{$colorProduct->hex}}"></li>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
+                            @endif
                             <div class="product-pricelist-selector-quantity">
-                                <h6>quantity</h6>
+                                <h6>Кількість</h6>
                                 <div class="wan-spinner wan-spinner-4">
                                     <a href="javascript:void(0)" class="minus">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="11.98" height="6.69"
@@ -113,7 +120,7 @@
                             </div>
                         </div>
                         <div class="product-pricelist-selector-button">
-                            <a class="btn cart-bg " href="#">Add to cart
+                            <a class="btn cart-bg " href="#">Додати до кошика
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                             </a>
                             <a class="btn bg-primary cart-hart" href="#">
@@ -136,36 +143,6 @@
                                 </svg>
                             </a>
                             <div class="product-pricelist-selector-button-item">
-                                <div class="shipping">
-                                    <div class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="21.4" height="17.937"
-                                             viewBox="0 0 21.4 17.937">
-                                            <g id="Truck_Icon" data-name="Truck Icon"
-                                               transform="translate(-0.8 -3.8)">
-                                                <path id="Path_14" data-name="Path 14" d="M1.5,4.5H15.112V16.3H1.5Z"
-                                                      fill="none" stroke="#335aff" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="1.4" />
-                                                <path id="Path_15" data-name="Path 15"
-                                                      d="M24,12h3.63l2.722,2.722V19.26H24Z"
-                                                      transform="translate(-8.852 -3)" fill="none" stroke="#335aff"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="1.4" />
-                                                <path id="Path_16" data-name="Path 16"
-                                                      d="M9.037,26.269A2.269,2.269,0,1,1,6.769,24a2.269,2.269,0,0,1,2.269,2.269Z"
-                                                      transform="translate(-1.185 -7.5)" fill="none" stroke="#335aff"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="1.4" />
-                                                <path id="Path_17" data-name="Path 17"
-                                                      d="M28.537,26.269A2.269,2.269,0,1,1,26.269,24,2.269,2.269,0,0,1,28.537,26.269Z"
-                                                      transform="translate(-8.852 -7.5)" fill="none" stroke="#335aff"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="1.4" />
-                                            </g>
-                                        </svg>
-
-                                    </div>
-                                    <p>Free Shipping Cast</p>
-                                </div>
                                 <div class="delivery">
                                     <div class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="17.5" height="17.5"
@@ -182,7 +159,7 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <p>3 Days Delivery Time</p>
+                                    <p>Доставка від 3 дох 5-ти днів</p>
                                 </div>
                                 <div class="cash">
                                     <div class="icon">
@@ -193,7 +170,7 @@
                                                   transform="translate(-9.48 -4.5)" fill="#335aff" />
                                         </svg>
                                     </div>
-                                    <p>Cash on Delivery</p>
+                                    <p>Наложений платіж</p>
                                 </div>
                             </div>
                         </div>

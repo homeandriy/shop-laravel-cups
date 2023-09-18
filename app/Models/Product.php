@@ -77,6 +77,7 @@ class Product extends Model implements Buyable {
     {
         return $query
             ->select(['products.*', 'cp.price as price', 'cp.quantity as quantity', 'colors.id as color_id'])
+            ->from('products as product')
             ->leftJoin('color_product as cp', 'cp.product_id', '=', 'products.id')
             ->leftJoin('colors', 'colors.id', '=', 'cp.color_id')
             ->where('products.id', '=', $this->id)
@@ -87,10 +88,11 @@ class Product extends Model implements Buyable {
     public function scopeWithColor(Builder $query, int $colorId): Builder
     {
         return $query
-            ->select(['products.*', 'cp.price as price', 'cp.quantity as quantity', 'colors.id as color_id'])
-            ->leftJoin('color_product as cp', 'cp.product_id', '=', 'products.id')
-            ->leftJoin('colors', 'colors.id', '=', 'cp.color_id')
-            ->where('colors.id', '=', $colorId);
+            ->select(['product.*', 'cp.price as price', 'cp.quantity as quantity', 'c.id as color_id'])
+            ->from('products as product')
+            ->leftJoin('color_product as cp', 'cp.product_id', '=', 'product.id')
+            ->leftJoin('colors as c', 'c.id', '=', 'cp.color_id')
+            ->where('c.id', '=', $colorId);
     }
 
     public function images(): MorphMany
@@ -105,7 +107,7 @@ class Product extends Model implements Buyable {
 
     public function colors(): BelongsToMany
     {
-        return $this->belongsToMany(Color::class)->withPivot( [ 'quantity', 'price' ]);
+        return $this->belongsToMany(Color::class)->withPivot( [ 'quantity', 'price', 'active', 'id' ]);
     }
 
     public function brand(): BelongsTo

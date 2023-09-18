@@ -146,7 +146,8 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <button type="submit" class="btn rounded-pill btn-primary">Створити</button>
+                                        <button type="submit" class="btn rounded-pill btn-primary">Обновити дані продукту</button>
+                                        <a href="{{ route('products.show' , $product->slug) }}"  class="float-right btn btn-outline-dark" target="_blank">Відкрити товар</a>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +184,7 @@
                                                             <label class="form-label" for="product-quantity-{{ $i }}">Кількість</label>
                                                             <input type="number" step="1" min="1" class="form-control form-control-lg" id="product-quantity-{{ $i }}" placeholder="Quantity" name="quantity" aria-describedby="product-quantity-helper" value="{{ $variation->pivot->quantity }}">
                                                         </div>
-                                                        <div class="mt-2 mb-3">
+                                                        <div class="mt-5 mb-3">
                                                             <div class="form-check form-switch mb-2">
                                                                 <input class="form-check-input" type="checkbox" name="active" id="flexSwitchCheckChecked" @checked((int)$variation->pivot->active === 1)>
                                                                 <label class="form-check-label" for="flexSwitchCheckChecked">Увімкнена</label>
@@ -207,10 +208,10 @@
                                 <form action="{{ route('admin.products.variation-create', $product) }}" method="POST" id="variation-form">
                                     @csrf
                                     @method('POST')
+                                    <button class="btn btn-warning float-right" data-count="{{$i}}" id="create-variations">Зберегти нові варіації</button>
                                 </form>
                                 <button class="btn btn-success" data-count="{{$i}}" id="add-variations">Додати варіацію</button>
                             </div>
-                            <button class="btn btn-warning" data-count="{{$i}}" id="add-variations">Зберегти нові варіації</button>
                         </div>
                     </div>
                 </div>
@@ -221,7 +222,7 @@
         <div id="row-__i__" class="row">
             <div class="col-md-12">
                 <div class="d-inline-flex gap-2">
-                    <input type="hidden" name="id[__i__}][]" value="">
+                    <input type="hidden" name="id[__i__][]" value="">
                     <div class="mt-2 mb-3">
                         <label for="product-parent-__i__" class="form-label">Select categories</label>
                         <select id="product-parent-__i__" class="form-select form-select-lg" name="color[__i__][]">
@@ -232,7 +233,7 @@
                     </div>
                     <div class="mt-2 mb-3">
                         <label class="form-label" for="product-price-__i__">Ціна в гривнях</label>
-                        <input type="number" class="form-control form-control-lg" id="product-price-__i__" placeholder="Price" name="price[__i__][]" aria-describedby="product-price-helper" value="">
+                        <input type="number" step="0.01" class="form-control form-control-lg" id="product-price-__i__" placeholder="Price" name="price[__i__][]" aria-describedby="product-price-helper" value="">
                     </div>
                     <div class="mt-2 mb-3">
                         <label class="form-label" for="product-quantity-__i__">Кількість</label>

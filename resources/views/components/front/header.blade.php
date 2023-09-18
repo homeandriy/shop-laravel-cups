@@ -134,7 +134,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="account.html"><svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                <a href="{{ Auth::user() ? route('profile.edit') : route('login') }}"><svg xmlns="http://www.w3.org/2000/svg" width="18"
                                                             height="20" viewBox="0 0 18 20">
                                         <g id="Account" transform="translate(1 1)">
                                             <path id="Path_86" data-name="Path 86"
