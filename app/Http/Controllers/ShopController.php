@@ -15,18 +15,15 @@ class ShopController extends Controller {
         return view( 'shop.index', compact( 'products' ) );
     }
 
-    public function show( Product $product, ?string $color = null, Builder $builder ) {
+    public function show( Product $product, ?string $color = null ) {
+//        dd($color);
 
+        $realColor =  $color ?
+            Color::where( 'slug', '=', $color )->get()->first():
+            $product->colors()->get()->first();
 
-        if ( $color ) {
-            $realColor = Color::where( 'id', '=', $color )->get()->first();
-        } else {
-            $realColor = $product->colors()->first();
-        }
-        // TODO Fix bug
-        dd( $product->scopeWithColor($builder, $realColor->id)->get());
         return view( 'shop.show' )
-            ->with( 'product', $product->scopeWithColor($builder, $realColor) )
+            ->with( 'product', $product )
             ->with( 'color', $realColor )
             ->with( 'productsFeatures', Product::inRandomOrder()->take( 9 )->get() );
     }

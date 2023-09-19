@@ -17,12 +17,25 @@ class CategoryProductSeeder extends Seeder {
         DB::table( 'categories' )->delete();
         DB::table( 'products' )->delete();
 
-        Category::factory( 5 )
-                ->create()
-                ->each( function ( Category $category ) {
-                    $category->products()->attach(
-                        Product::factory(rand(2, 4))->withColor()->create()->pluck('id')
-                    );
-                } );
+        $categories = [
+            [
+                'name'        => 'Чашки',
+                'slug'        => 'cups',
+                'description' => '',
+            ],
+            [
+                'name'        => 'Футболки',
+                'slug'        => 't-shirts',
+                'description' => '',
+            ],
+            [
+                'name'        => 'Сумки-шоппери',
+                'slug'        => 'shopper-bags',
+                'description' => '',
+            ],
+        ];
+        foreach ( $categories as $category ) {
+            Category::factory()->create( $category );
+        }
     }
 }

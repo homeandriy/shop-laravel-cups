@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Attributes\Brand;
 use App\Models\Attributes\Color;
+use App\Models\Attributes\Size;
 use App\Services\FileStorageService;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -57,6 +58,10 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int|null $brand_id
  * @method static Builder|Product whereBrandId($value)
  * @method static Builder|Product withProductColor(int $colorId)
+ * @property int $status
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Size> $sizes
+ * @property-read int|null $sizes_count
+ * @method static Builder|Product whereStatus($value)
  * @mixin \Eloquent
  */
 class Product extends Model implements Buyable {
@@ -78,7 +83,7 @@ class Product extends Model implements Buyable {
         return $query
             ->select(['products.*', 'cp.price as price', 'cp.quantity as quantity', 'colors.id as color_id'])
             ->from('products as product')
-            ->leftJoin('color_product as cp', 'cp.product_id', '=', 'products.id')
+            ->leftJoin('attribute_product as cp', 'cp.product_id', '=', 'products.id')
             ->leftJoin('colors', 'colors.id', '=', 'cp.color_id')
             ->where('products.id', '=', $this->id)
             ->where('colors.id', '=', $colorId);
@@ -88,11 +93,10 @@ class Product extends Model implements Buyable {
     public function scopeWithColor(Builder $query, int $colorId): Builder
     {
         return $query
-            ->select(['product.*', 'cp.price as price', 'cp.quantity as quantity', 'c.id as color_id'])
-            ->from('products as product')
-            ->leftJoin('color_product as cp', 'cp.product_id', '=', 'product.id')
-            ->leftJoin('colors as c', 'c.id', '=', 'cp.color_id')
-            ->where('c.id', '=', $colorId);
+            ->select(['product.*', 'cp.price as priceVariation', 'cp.quantity as quantityVariation', 'c.id as color_id'])
+            ->join('attribute_product as cp', 'cp.product_id', '=', 'product.id')
+            ->join('colors as c', 'c.id', '=', 'cp.color_id')
+            ->where('c.id', '=', $colorId, );
     }
 
     public function images(): MorphMany
@@ -107,7 +111,11 @@ class Product extends Model implements Buyable {
 
     public function colors(): BelongsToMany
     {
-        return $this->belongsToMany(Color::class)->withPivot( [ 'quantity', 'price', 'active', 'id' ]);
+        return $this->belongsToMany(Color::class, 'attribute_product')->withPivot( [ 'quantity', 'price', 'active', 'id', 'discount' ]);
+    }
+    public function sizes(): BelongsToMany
+    {
+        return $this->belongsToMany(Size::class, 'attribute_product')->withPivot( [ 'quantity', 'price', 'active', 'id', 'discount' ]);
     }
 
     public function brand(): BelongsTo
@@ -122,16 +130,22 @@ class Product extends Model implements Buyable {
                 if ( str_starts_with( $this->attributes['thumbnail'], 'http' ) ) {
                     return $this->attributes['thumbnail'];
                 }
-                $key = "products.thumbnail.{$this->attributes['thumbnail']}";
-
-                if (!Cache::has($key)) {
-                    $link = Storage::temporaryUrl($this->attributes['thumbnail'], now()->addMinutes(10));
-                    Cache::put($key, $link, 570);
-                    return $link;
+//                $key = "products.thumbnail.{$this->attributes['thumbnail']}";
+//
+//                if (!Cache::has($key)) {
+//                    $link = Storage::temporaryUrl($this->attributes['thumbnail'], now()->addMinutes(10));
+//                    Cache::put($key, $link, 570);
+//                    return $link;
+//                }
+//
+//                // public/images/.....png
+//                return Cache::get($key);
+                if (!Storage::exists($this->attributes['thumbnail'])) {
+                    return $this->attributes['thumbnail'];
                 }
 
                 // public/images/.....png
-                return Cache::get($key);
+                return Storage::url($this->attributes['thumbnail']);
             }
         );
     }

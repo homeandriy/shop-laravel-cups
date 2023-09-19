@@ -14,10 +14,10 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Головна</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Category</li>
-                            <li class="breadcrumb-item" aria-current="page">Subcategory</li>
-                            <li class="breadcrumb-item" aria-current="page">Product</li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                            @foreach($product->categories()->get() as $category)
+                                <li class="breadcrumb-item" aria-current="page"><a href="{{ route('shop.categories', $category->slug) }}">{{ $category->name }}</a></li>
+                            @endforeach
+                            <li class="breadcrumb-item" aria-current="page">{{ $product->title }}</li>
                         </ol>
                     </nav>
                     <h5>Деталі: {{ $product->title }}</h5>
@@ -36,10 +36,7 @@
                         <div class="exzoom" id="exzoom">
                             <div class="exzoom_img_box">
                                 <ul class='exzoom_img_ul'>
-                                    <li><img src="{{ asset('storage/dist/images/product-deatils/1-big-mage.jpg') }}" /></li>
-                                    <li><img src="{{ asset('storage/dist/images/product-deatils/2-big-image.jpg') }}" /></li>
-                                    <li><img src="{{ asset('storage/dist/images/product-deatils/3-big-image.jpg') }}" /></li>
-                                    <li><img src="{{ asset('storage/dist/images/product-deatils/4-big-image.jpg') }}" /></li>
+                                    <li><img src="{{ asset($product->thumbnailUrl) }}" alt="{{ $product->title }}"/></li>
                                 </ul>
                             </div>
                             <div class="exzoom_nav"></div>
@@ -62,9 +59,9 @@
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
-                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star-half"></i></li>
                                     <li>5.0</li>
-                                    <li class="point">({{ mt_rand(1, 255) }} Rating)</li>
+                                    <li class="point">({{ mt_rand(1, 255) }} Ретинг)</li>
                                 </ul>
                             </div>
                         </div>
@@ -87,7 +84,7 @@
                                 <h6>Колір кружки</h6>
                                 <div class="colors" id="colors">
                                     @foreach($product->colors()->get() as $colorProduct)
-                                        <a href="{{ route('products.show', [$product, $colorProduct->pivot->color_id]) }}">
+                                        <a href="{{ route('products.show', [$product, $colorProduct->slug]) }}">
                                             <li class="colorall @if($colorProduct->pivot->color_id === $color->id) active @endif" style="background-color: {{$colorProduct->hex}}"></li>
                                         </a>
                                     @endforeach

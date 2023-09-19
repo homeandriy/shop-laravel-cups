@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Attributes\Color>
  */
-class ColorFactory extends Factory {
+class SizeFactory extends Factory {
     /**
      * Define the model's default state.
      *
@@ -19,9 +19,9 @@ class ColorFactory extends Factory {
         $slug = Str::of( $name )->slug( '-' );
 
         return [
-            'hex'  => fake()->unique()->hexColor(),
-            'name' => $name,
-            'slug' => $slug
+            'name'  => $name,
+            'slug' => $slug,
+            'description' => fake()->words( rand( 20, 30 ), true )
         ];
     }
 }

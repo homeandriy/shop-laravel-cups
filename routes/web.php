@@ -18,7 +18,7 @@ Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{categories:slug}', [\App\Http\Controllers\ShopController::class, 'categories'])->name('shop.categories');
 Route::name('products.')->prefix('products')->group(function (){
-    Route::get('{product:slug}/{color?}', [\App\Http\Controllers\ShopController::class, 'show'])->name('show');
+    Route::get('{product:slug}/{color:slug?}', [\App\Http\Controllers\ShopController::class, 'show'])->name('show');
 });
 
 Route::get('checkout', \App\Http\Controllers\CheckoutController::class)->name('checkout');

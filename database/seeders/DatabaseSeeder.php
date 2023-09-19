@@ -22,9 +22,12 @@ class DatabaseSeeder extends Seeder
             [
                 PermissionSeeder::class,
                 UsersSeeder::class,
-                ProductAttributesSeeder::class,
+                SizeSeeder::class,
+                ColorSeeder::class,
+                BrandsSeeder::class,
                 CategoryProductSeeder::class,
-                OrderStatusesSeeder::class
+                OrderStatusesSeeder::class,
+                ProductAttributesSeeder::class,
             ]
         );
     }

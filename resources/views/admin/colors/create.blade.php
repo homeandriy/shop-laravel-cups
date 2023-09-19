@@ -21,6 +21,20 @@
                             @csrf
                             @method('POST')
                             <div>
+                                <label class="form-label" for="color-name">Назва Кольору</label>
+                                <input type="text" class="form-control form-control-lg" id="color-name" placeholder="name" name="name" aria-describedby="color-name-helper">
+                                <div id="color-name-helper" class="form-text">
+                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label" for="color-slug">Slug</label>
+                                <input type="text" class="form-control form-control-lg" id="color-slug" placeholder="slug" name="slug" aria-describedby="color-slug-helper">
+                                <div id="color-slug-helper" class="form-text">
+                                    <x-input-error :messages="$errors->get('slug')" class="mt-2" />
+                                </div>
+                            </div>
+                            <div>
                                 <label class="form-label" for="color-hex">Color</label>
                                 <input type="color" class="form-control form-control-lg" id="color-hex" placeholder="hex" name="hex" aria-describedby="color-hex-helper">
                                 <div id="color-hex-helper" class="form-text">

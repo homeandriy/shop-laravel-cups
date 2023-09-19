@@ -26,8 +26,11 @@ class UpdateColorRequest extends FormRequest
     public function rules(): array
     {
         $colorId = $this->route( 'color' )->id;
+
         return [
-            'hex' => ['required', 'string', Rule::unique( Color::class, 'hex' )->ignore( $colorId )]
+            'hex' => ['required', 'string', Rule::unique( Color::class, 'hex' )->ignore( $colorId )],
+            'name' => ['required', 'string', 'min:2', 'max:255', Rule::unique( Color::class, 'name' )->ignore( $colorId )],
+            'slug' => ['required', 'string', 'min:2', 'max:255', Rule::unique( Color::class, 'slug' )->ignore( $colorId )]
         ];
     }
 }

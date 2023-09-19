@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('color_product', function (Blueprint $table) {
+        Schema::table('attribute_product', function (Blueprint $table) {
             $table->tinyInteger('active', unsigned: true)->nullable(false)->default(0);
         });
     }
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('color_product', function (Blueprint $table) {
-            $table->dropForeign('active');
-        });
+//        Schema::table('attribute_product', function (Blueprint $table) {
+//            $table->dropForeign('active');
+//        });
     }
 };

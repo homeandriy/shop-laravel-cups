@@ -22,6 +22,24 @@
                             @csrf
                             @method('PUT')
                             <div>
+                                <label class="form-label" for="name">Назва кольору</label>
+                                <input type="text" class="form-control form-control-lg" id="name"
+                                       placeholder="name" name="name" aria-describedby="category-name-helper"
+                                       value="{{ $color->name }}">
+                                <div id="category-name-helper" class="form-text">
+                                    <x-input-error :messages="$errors->get('name')" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label" for="slug">Slug</label>
+                                <input type="text" class="form-control form-control-lg" id="slug"
+                                       placeholder="hex" name="slug" aria-describedby="category-slug-helper"
+                                       value="{{ $color->slug }}">
+                                <div id="category-slug-helper" class="form-text">
+                                    <x-input-error :messages="$errors->get('slug')" class="mt-2"/>
+                                </div>
+                            </div>
+                            <div>
                                 <label class="form-label" for="hex">Name</label>
                                 <input type="color" class="form-control form-control-lg" id="hex"
                                        placeholder="hex" name="hex" aria-describedby="category-hex-helper"

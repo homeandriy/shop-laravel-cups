@@ -169,16 +169,25 @@
                                                     <div class="d-inline-flex gap-2">
                                                         <input type="hidden" name="id" value="{{ $variation->id }}">
                                                         <div class="mt-2 mb-3">
+                                                            <div
+                                                                style="width: 20px; height: 20px; background-color: {{$variation->hex}}; border: 1px solid #0d1116; border-radius: 50%"
+                                                            ></div>
+                                                        </div>
+                                                        <div class="mt-2 mb-3">
                                                             <label for="product-parent-{{ $i }}" class="form-label">Select categories</label>
                                                             <select id="product-parent-{{ $i }}" class="form-select form-select-lg" name="color">
                                                                 @foreach($colors as $basicColor)
-                                                                    <option value="{{ $basicColor->id }}" @selected($basicColor->id === $variation->pivot->color_id)>{{ $basicColor->hex }}</option>
+                                                                    <option value="{{ $basicColor->id }}" @selected($basicColor->id === $variation->pivot->color_id)>{{ $basicColor->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                         <div class="mt-2 mb-3">
                                                             <label class="form-label" for="product-price-{{ $i }}">Ціна в гривнях</label>
                                                             <input type="number" class="form-control form-control-lg" id="product-price-{{ $i }}" placeholder="Price" name="price" aria-describedby="product-price-helper" value="{{ $variation->pivot->price }}">
+                                                        </div>
+                                                        <div class="mt-2 mb-3">
+                                                            <label class="form-label" for="product-discount-{{ $i }}">Скидка</label>
+                                                            <input type="number" class="form-control form-control-lg" id="product-discount-{{ $i }}" placeholder="Скидка" name="discount" aria-describedby="product-discount-helper" value="{{ $variation->pivot->discount }}">
                                                         </div>
                                                         <div class="mt-2 mb-3">
                                                             <label class="form-label" for="product-quantity-{{ $i }}">Кількість</label>

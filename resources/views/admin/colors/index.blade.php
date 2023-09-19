@@ -23,6 +23,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Колір</th>
+                                <th>Назва</th>
+                                <th>Slug</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -33,13 +35,15 @@
                                         <strong>{{ $color->id }}</strong>
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.colors.edit', $color->id) }}">
+                                        <a href="{{ route('admin.colors.edit', $color->id) }}" title="{{ $color->name }}">
                                             <strong>{{$color->hex}}</strong>
                                             <div
                                                 style="width: 20px; height: 20px; background-color: {{$color->hex}}; border: 1px solid #0d1116; border-radius: 50%"
                                             ></div>
                                         </a>
                                     </td>
+                                    <td>{{ $color->name }}</td>
+                                    <td>{{ $color->slug }}</td>
                                    <td>
                                         <div class="d-flex gap-1">
                                             <a class="btn btn-success"

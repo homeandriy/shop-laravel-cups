@@ -12,7 +12,6 @@ class OrderStatusesSeeder extends Seeder
      */
     public function run(): void
     {
-//        dd(\App\Enums\OrderStatus::cases());
         foreach(\App\Enums\OrderStatus::cases() as $key => $constValue) {
             OrderStatus::firstOrCreate(['name' => $constValue]);
         }

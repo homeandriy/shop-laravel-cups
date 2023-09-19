@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>@yield('title', 'Купуйте кружки та футболки на сайті '. Config::get('app.name'))</title>
-        <link rel="icon" href="logo.png">
+        <link rel="icon" href="/logo.png">
         <meta name ="description" content="@yield('description', 'Купити машки та футболки з унікальним дизайном для всієї родини на ' . Config::get('app.name'))">
         <meta name ="keywords" content="@yield('keywords', 'Кружки', 'футболки')">
         <meta property="og:locale" content="ua_UA">

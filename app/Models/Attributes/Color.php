@@ -24,6 +24,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereHex($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereUpdatedAt($value)
+ * @property string $name
+ * @property string $slug
+ * @method static \Illuminate\Database\Eloquent\Builder|Color whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Color whereSlug($value)
  * @mixin \Eloquent
  */
 class Color extends Model
@@ -31,7 +35,9 @@ class Color extends Model
     use HasFactory;
 
     protected $fillable = [
-        'hex'
+        'hex',
+        'name',
+        'slug'
     ];
 
     public function products(): BelongsToMany
