@@ -98,7 +98,7 @@
                     <div class="menu-icon ml-auto">
                         <ul>
                             <li>
-                                <a href="wishlist.html">
+                                <a href="{{ route('wishlist') }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20"
                                          viewBox="0 0 22 20">
                                         <g id="Heart" transform="translate(1 1)">
@@ -108,11 +108,11 @@
                                                   stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                         </g>
                                     </svg>
-                                    <span class="heart">3</span>
+                                    <span class="heart">{{ Cart::instance('wishlist')->countItems() ?? 0 }}</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#cart-modal">
+                                <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cart-right" aria-controls="cart-right">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                                          viewBox="0 0 22 22">
                                         <g id="Icon" transform="translate(-1524 -89)">
@@ -130,7 +130,7 @@
                                                   stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                         </g>
                                     </svg>
-                                    <span class="cart">3</span>
+                                    <span class="cart" id="cart-amount">{{ Cart::instance('cart')->countItems() ?? 0 }}</span>
                                 </a>
                             </li>
                             <li>

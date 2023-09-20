@@ -84,6 +84,7 @@
         </div>
     </div>
     @include('components.front.cart')
+    @include('components.front.wishlist')
 </footer>
 <!-- Footer -->
 <script>

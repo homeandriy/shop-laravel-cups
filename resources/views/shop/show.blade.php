@@ -2,6 +2,7 @@
 /**
  * @var \App\Models\Product $product
  * @var \App\Models\Attributes\Color $color
+ * @var \App\Enums\Variation $variation
  * @var \App\Models\Product[] $productsFeatures
  */
 ?>
@@ -48,9 +49,9 @@
                         <h2>{{ $product->title }}</h2>
                         <div class="product-pricelist-ratting">
                             <div class="price">
-                                <span>${{ $product->endPrice }} ₴</span>
-                                @if($product->price !== $product->endPrice)
-                                    <del class="old-price">{{ $product->price }} ₴</del>
+                                <span>${{ $variation->getEndPrice() }} ₴</span>
+                                @if($variation->getPrice() !== $variation->getEndPrice())
+                                    <del class="old-price">{{ $variation->getPrice() }} ₴</del>
                                 @endif
                             </div>
                             <div class="star">
@@ -85,41 +86,47 @@
                                 <div class="colors" id="colors">
                                     @foreach($product->colors()->get() as $colorProduct)
                                         <a href="{{ route('products.show', [$product, $colorProduct->slug]) }}">
-                                            <li class="colorall @if($colorProduct->pivot->color_id === $color->id) active @endif" style="background-color: {{$colorProduct->hex}}"></li>
+                                            <li class="colorall @if($colorProduct->pivot->color_id === $color->id) active @endif" style="background-color: {{$colorProduct->hex}}" title="{{ $color->name }}"></li>
                                         </a>
                                     @endforeach
                                 </div>
                             </div>
                             @endif
-                            <div class="product-pricelist-selector-quantity">
-                                <h6>Кількість</h6>
-                                <div class="wan-spinner wan-spinner-4">
-                                    <a href="javascript:void(0)" class="minus">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="11.98" height="6.69"
-                                             viewBox="0 0 11.98 6.69">
-                                            <path id="Arrow" d="M1474.286,26.4l5,5,5-5"
-                                                  transform="translate(-1473.296 -25.41)" fill="none" stroke="#989ba7"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" />
-                                        </svg>
-                                    </a>
-                                    <input type="text" value="1" min="1">
-                                    <a href="javascript:void(0)" class="plus"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="11.98" height="6.69"
-                                            viewBox="0 0 11.98 6.69">
-                                            <g id="Arrow" transform="translate(10.99 5.7) rotate(180)">
-                                                <path id="Arrow-2" data-name="Arrow" d="M1474.286,26.4l5,5,5-5"
-                                                      transform="translate(-1474.286 -26.4)" fill="none"
-                                                      stroke="#1a2224" stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="1.4" />
-                                            </g>
-                                        </svg></a>
+                        </div>
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Accordion Item #1
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                        Accordion Item #2
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                        Accordion Item #3
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
                                 </div>
                             </div>
                         </div>
                         <div class="product-pricelist-selector-button">
-                            <a class="btn cart-bg " href="#">Додати до кошика
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                            </a>
+                            <x-add-to-cart :variation="$variation"></x-add-to-cart>
                             <a class="btn bg-primary cart-hart" href="#">
                                 <svg id="Heart" xmlns="http://www.w3.org/2000/svg"
                                      xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="20"
@@ -171,6 +178,43 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-12 mt-4">
+                    <ul class="nav nav-pills mb-3 w-100" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Опис</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Доставка та оплата</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Коментарі</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            {{ $product->description }}
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Колір</td>
+                                        <td>{{ $variation->getColor()->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Об'єм</td>
+                                        <td>330 мл</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SKU</td>
+                                        <td>{{ $product->SKU }}-{{ $variation->getColor()->slug }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
+Route::get('/wishlist', [\App\Http\Controllers\ShopController::class, 'wishlist'])->name('wishlist');
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{categories:slug}', [\App\Http\Controllers\ShopController::class, 'categories'])->name('shop.categories');
 Route::name('products.')->prefix('products')->group(function (){
@@ -29,7 +30,7 @@ Route::get('mail', function () {
 
 Route::name('cart.')->prefix('cart')->group(function() {
     Route::get('/', [\App\Http\Controllers\CartController::class, 'index'])->name('index');
-    Route::post('{product}', [\App\Http\Controllers\CartController::class, 'add'])->name('add');
+    Route::post('/add', [\App\Http\Controllers\CartController::class, 'add'])->name('add');
     Route::delete('/', [\App\Http\Controllers\CartController::class, 'remove'])->name('remove');
     Route::put('{product}/count', [\App\Http\Controllers\CartController::class, 'countUpdate'])->name('count.update');
 });

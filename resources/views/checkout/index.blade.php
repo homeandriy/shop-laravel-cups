@@ -11,9 +11,9 @@
                         <div class="col-md-6 col-sm-12">
                             <!-- gi-breadcrumb-list start -->
                             <ul class="gi-breadcrumb-list">
-                                <li class="gi-breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                                <li class="gi-breadcrumb-item"><a href="{{ route('products.index') }}">Shop</a></li>
-                                <li class="gi-breadcrumb-item active">Checkout</li>
+                                <li class="gi-breadcrumb-item"><a href="{{ route('home') }}">Головна</a></li>
+                                <li class="gi-breadcrumb-item"><a href="{{ route('shop') }}">Каталог</a></li>
+                                <li class="gi-breadcrumb-item active">Оформлення замовлення</li>
                             </ul>
                             <!-- gi-breadcrumb-list end -->
                         </div>
@@ -25,7 +25,7 @@
     <!-- Breadcrumb end -->
     <!-- Checkout start -->
     <section class="gi-checkout-section padding-tb-40">
-        <h2 class="d-none">Checkout Page</h2>
+        <h2 class="d-none">Оформлення замовлення</h2>
         <div class="container">
             <div class="row">
                 <!-- Sidebar Area Start -->
@@ -34,7 +34,7 @@
                         <!-- Sidebar Summary Block -->
                         <div class="gi-sidebar-block">
                             <div class="gi-sb-title">
-                                <h3 class="gi-sidebar-title">Summary<div class="gi-sidebar-res"><i class="gicon gi-angle-down"></i></div></h3>
+                                <h3 class="gi-sidebar-title">Підсумок<div class="gi-sidebar-res"><i class="gicon gi-angle-down"></i></div></h3>
                             </div>
                             <div class="gi-sb-block-content gi-sidebar-dropdown">
                                 <div class="gi-checkout-summary">

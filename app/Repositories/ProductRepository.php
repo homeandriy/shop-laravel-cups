@@ -100,7 +100,6 @@ class ProductRepository implements Contracts\ProductRepositoryContract {
         if ( $request->has( 'color' ) ) {
             $product = $product->withProductColor($request->get('color'))->first();
         }
-
         return $product;
     }
 

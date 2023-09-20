@@ -21,9 +21,9 @@ class ShopController extends Controller {
         $realColor =  $color ?
             Color::where( 'slug', '=', $color )->get()->first():
             $product->colors()->get()->first();
-
         return view( 'shop.show' )
             ->with( 'product', $product )
+            ->with( 'variation', $product->variationColorData($realColor) )
             ->with( 'color', $realColor )
             ->with( 'productsFeatures', Product::inRandomOrder()->take( 9 )->get() );
     }
