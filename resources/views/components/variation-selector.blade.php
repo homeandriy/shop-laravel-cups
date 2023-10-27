@@ -6,9 +6,9 @@
 @php
 $jsonVariations = [];
 @endphp
-<div class="product-item-info product-pricelist-selector-color">
+<div class="product-item-info product-pricelist-selector-color" >
     @if($product->colors()->count())
-        <div class="colors">
+        <div class="colors" data-product="{{$product->id}}">
             @php
                 $color = $product->colors()->get()->first();
             @endphp
@@ -16,10 +16,12 @@ $jsonVariations = [];
                 @php
                     $jsonVariations[$colorVariation->pivot->color_id] = [
                         'name' => $color->name,
-                        'id'   => $colorVariation->pivot->color_id
+                        'id'   => $colorVariation->pivot->color_id,
+                        'price'   => $colorVariation->pivot->price,
+                        'quantity'   => $colorVariation->pivot->quantity,
                     ]
                 @endphp
-                <a href="#variation-{{$colorVariation->pivot->color_id}}">
+                <a href="#variation-{{$colorVariation->pivot->color_id}}" data-variation="{{$colorVariation->pivot->color_id}}">
                     <li class="variation-cell colorall @if($colorVariation->pivot->color_id === $color->id) active @endif" style="background-color: {{$colorVariation->hex}}" title="{{ $color->name }}"></li>
                 </a>
             @endforeach

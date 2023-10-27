@@ -10,6 +10,22 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+//Active size
+$('.sizes li').on('click', function () {
+    $(this).addClass('active').siblings().removeClass('active');
+});
+
+
+//Active color
+$('.colors li').on('click', function () {
+    console.log($(this).parent('a'));
+    let colorId = $(this).parent('a').data('variation');
+    let productId = $(this).closest('.colors').eq(0).data('product');
+    console.log(colorId, productId)
+    $(this).addClass('active').siblings().removeClass('active');
+});
+
+
 function plusQuantity() {
 
 }

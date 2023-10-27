@@ -185,7 +185,8 @@ class Product extends Model implements Buyable {
 //                // public/images/.....png
 //                return Cache::get($key);
                 if ( ! Storage::exists( $this->attributes['thumbnail'] ) ) {
-                    return $this->attributes['thumbnail'];
+//                    return $this->attributes['thumbnail'];
+                    return '/img/02.jpg';
                 }
 
                 // public/images/.....png

@@ -117,19 +117,6 @@ $(document).ready(function () {
 
         });
     }
-
-  //Active size
-  $('#sizes li').on('click', function () {
-    $(this).addClass('active').siblings().removeClass('active');
-  });
-
-
-  //Active color
-  $('#colors li').on('click', function () {
-    $(this).addClass('active').siblings().removeClass('active');
-  });
-
-
 });
 
 //nice-select
