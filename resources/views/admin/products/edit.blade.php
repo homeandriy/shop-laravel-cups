@@ -47,7 +47,7 @@
                                         </h5>
                                         <div class="card-body">
                                             <div>
-                                                <label class="form-label" for="product-name">Title</label>
+                                                <label class="form-label" for="product-name">Назва товару</label>
                                                 <input type="text" class="form-control form-control-lg" id="product-name" placeholder="Title" name="title" aria-describedby="product-name-helper" value="{{ $product->title }}">
                                                 <div id="product-name-helper" class="form-text">
                                                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
@@ -55,17 +55,24 @@
                                             </div>
 
                                             <div>
-                                                <label for="product-description" class="form-label">Description</label>
+                                                <label for="product-description" class="form-label">Опис товару</label>
                                                 <textarea class="form-control" id="product-description" name="description" aria-describedby="product-description-helper" rows="3" placeholder="Description">{{ $product->description  }}</textarea>
                                                 <div id="product-description-helper" class="form-text">
                                                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="form-label" for="product-price">Price</label>
+                                                <label class="form-label" for="product-price">Ціна</label>
                                                 <input type="number" step="0.01" class="form-control form-control-lg" id="product-price" placeholder="Price" name="price" aria-describedby="product-price-helper" value="{{ $product->price }}" >
                                                 <div id="product-price-helper" class="form-text">
                                                     <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="form-label" for="product-discount">Скидка (0-100%)</label>
+                                                <input type="number" step="1" min="0" max="100" class="form-control form-control-lg" id="product-discount" placeholder="Discount (0-100%)" name="discount" aria-describedby="product-discount-helper" value="{{ $product->discount }}">
+                                                <div id="product-discount-helper" class="form-text">
+                                                    <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div>
@@ -76,21 +83,14 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="form-label" for="product-discount">Discount (0-100%)</label>
-                                                <input type="number" step="1" min="0" max="100" class="form-control form-control-lg" id="product-discount" placeholder="Discount (0-100%)" name="discount" aria-describedby="product-discount-helper" value="{{ $product->discount }}">
-                                                <div id="product-discount-helper" class="form-text">
-                                                    <x-input-error :messages="$errors->get('discount')" class="mt-2" />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label class="form-label" for="product-quantity">Quantity</label>
+                                                <label class="form-label" for="product-quantity">Кількість на складі</label>
                                                 <input type="number" step="1" min="1" class="form-control form-control-lg" id="product-quantity" placeholder="Quantity" name="quantity" aria-describedby="product-quantity-helper" value="{{ $product->quantity }}">
                                                 <div id="product-quantity-helper" class="form-text">
                                                     <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-3">
-                                                <label for="product-parent" class="form-label">Select categories</label>
+                                                <label for="product-parent" class="form-label">Категорії</label>
                                                 <select id="product-parent" class="form-select form-select-lg" name="categories[]" multiple>
                                                     @foreach($categories as $category)
                                                         <option value="{{ $category->id }}" @if( $productCategoriesIds->contains($category->id)) selected @endif>{{ $category->name }}</option>
@@ -109,7 +109,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="mt-2 mb-3">
-                                                <label for="thumbnail" class="form-label">Change product thumbnail</label>
+                                                <label for="thumbnail" class="form-label">Основне зображення</label>
                                                 <input class="form-control" type="file" name="thumbnail" id="thumbnail">
                                                 <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                                             </div>
@@ -118,7 +118,7 @@
                                             </div>
 
                                             <div class="mt-2 mb-3">
-                                                <label for="images" class="form-label">Change product Images</label>
+                                                <label for="images" class="form-label">Галерея товару</label>
                                                 <input class="form-control" type="file" name="images[]" id="images" multiple>
                                                 <x-input-error :messages="$errors->get('images[]')" class="mt-2" />
                                             </div>

@@ -18,9 +18,9 @@
                         {{ $category->name }}
                     </h5>
                     <div class="card-body">
-                        <form action="{{ route('admin.categories.update', $category) }}" method="POST">
+                        <form action="{{ route('admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('POST')
+                            @method('PUT')
                             <div>
                                 <label class="form-label" for="category-name">Name</label>
                                 <input type="text" class="form-control form-control-lg" id="category-name" placeholder="Name" name="name" aria-describedby="category-name-helper" value="{{ $category->name }}">
@@ -46,7 +46,14 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
                             </div>
-
+                            <div class="mt-2 mb-3">
+                                <label for="cat_image" class="form-label">Зображення</label>
+                                <input class="form-control" type="file" name="cat_image" id="cat_image">
+                                <x-input-error :messages="$errors->get('cat_image')" class="mt-2" />
+                            </div>
+                            <div class="mb-4">
+                                <img src="{{ $category->imageUrl }}" id="thumbnail-preview">
+                            </div>
                             <button type="submit" class="btn rounded-pill btn-primary">Оновити</button>
                         </form>
                     </div>

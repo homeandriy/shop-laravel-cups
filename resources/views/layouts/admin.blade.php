@@ -14,7 +14,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
         <!-- Scripts -->
         @vite(['resources/css/admin/app.css', 'resources/js/admin/app.js'])
-
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+                selector: 'textarea#product-description', // Replace this CSS selector to match the placeholder element for TinyMCE
+                plugins: 'powerpaste advcode table lists checklist',
+                toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
+            });
+        </script>
     </head>
     <body class="layout-wrapper layout-content-navbar">
         <div class="layout-container">

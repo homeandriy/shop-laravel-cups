@@ -21,9 +21,11 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>зображення</th>
                                 <th>Назва</th>
                                 <th>Опис</th>
                                 <th>Підкатегорія</th>
+                                <th>Товари</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -32,11 +34,19 @@
                                 <tr>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $category->id }}</strong></td>
                                     <td>
+                                        @if($category->imageUrl)
+                                            <img src="{{ $category->imageUrl }}" alt="{{ $category->name }}" width="150">
+                                        @endif
+                                    </td>
+                                    <td>
                                         <a href="{{ route('admin.categories.edit', $category->id) }}">
                                             <strong>{{$category->name}}</strong>
                                         </a>
                                     <td>
                                         {{ $category->description }}
+                                    </td>
+                                    <td>
+                                        {{ $category->products_count }}
                                     </td>
                                     <td><span class="badge bg-label-primary me-1">{{ $category->parent()->value('name') }}</span></td>
                                     <td>

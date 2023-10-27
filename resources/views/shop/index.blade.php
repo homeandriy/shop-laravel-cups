@@ -43,7 +43,7 @@
             <div class="row justify-content-center">
                 <div class="categoryitem-wrapper">
                     <div class="categoryitem-wrapper-itembox">
-                        <h6>Category</h6>
+                        <h6>Категорія</h6>
                         <select>
                             <option data-display="Men">Men</option>
                             <option value="1">Men</option>

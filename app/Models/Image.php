@@ -54,17 +54,12 @@ class Image extends Model {
     public function url(): Attribute {
         return Attribute::make(
             get: function () {
-                $key = "products.images.{$this->attributes['path']}";
-
-                if ( ! Cache::has( $key ) ) {
-                    $link = Storage::temporaryUrl( $this->attributes['path'], now()->addMinutes( 10 ) );
-                    Cache::put( $key, $link, 570 );
-
-                    return $link;
+                if ( ! Storage::exists( $this->attributes['path'] ) ) {
+                    return $this->attributes['path'];
                 }
 
                 // public/images/.....png
-                return Cache::get( $key );
+                return Storage::url( $this->attributes['path'] );
             }
         );
     }

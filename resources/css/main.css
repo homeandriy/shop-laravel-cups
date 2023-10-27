@@ -12750,8 +12750,6 @@ footer {
     margin-bottom: 30px; }
     .deliver-info .form__div input {
       width: 100% !important; }
-  .deliver-info-form {
-    margin-top: 100px; }
     .deliver-info-form h6 {
       margin-bottom: 30px;
       color: #1A2224;
@@ -12769,30 +12767,22 @@ footer {
       margin-top: 10px; }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .deliver-info-form {
-    margin-top: 50px; }
   .deliver-info {
     padding-bottom: 70px; } }
 
 @media (min-width: 575px) and (max-width: 767px) {
-  .deliver-info-form {
-    margin-top: 50px; }
   .deliver-info {
     padding-bottom: 70px; }
   .deliver-info-form form select {
     margin-bottom: 30px; } }
 
 @media only screen and (min-width: 420px) and (max-width: 574px) {
-  .deliver-info-form {
-    margin-top: 30px; }
   .deliver-info {
     padding-bottom: 50px; }
   .deliver-info-form form select {
     margin-bottom: 30px; } }
 
 @media (max-width: 420px) {
-  .deliver-info-form {
-    margin-top: 30px; }
   .deliver-info {
     padding-bottom: 50px; }
   .deliver-info-form form select {

@@ -47,6 +47,12 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::name('ajax.')->middleware('auth')->prefix('ajax')->group(function() {
+    Route::group(['role:admin|moderator'], function() {
+        Route::delete('images/{image}', \App\Http\Controllers\Ajax\RemoveImageController::class)->name('images.delete');
+    });
+});
+
 Route::name('admin.')->prefix('admin')->middleware(['role:admin|moderator'])->group(function() {
     Route::get('dashboard', \App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
     Route::resource('products', \App\Http\Controllers\Admin\ProductsController::class)->except(['show']);

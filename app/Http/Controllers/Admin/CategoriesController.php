@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateCategory;
-use App\Http\Requests\UpdateCategory;
+use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Repositories\ImageRepository;
+use App\Services\FileStorageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -34,11 +36,18 @@ class CategoriesController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store( CreateCategory $request ) {
+    public function store( CreateCategoryRequest $request, ImageRepository $imageRepository ) {
         $fields         = $request->validated();
         $fields['slug'] = Str::of( $fields['name'] )->slug( '-' );
-
-        Category::create( $fields );
+//        dd($request);
+        if ( isset( $fields['cat_image'] ) ) {
+            $image = $fields['cat_image'];
+        }
+        unset( $fields['cat_image'] );
+        $category = Category::create( $fields );
+        if ( isset($image) ) {
+            $imageRepository->attach( $category, 'image', [$image], 'category/' . $category->slug );
+        }
 
         return redirect()->route( 'admin.categories.index' );
     }
@@ -55,9 +64,20 @@ class CategoriesController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update( UpdateCategory $request, Category $category ) {
-        $category->updateOrFail( $request->validated() );
+    public function update( UpdateCategoryRequest $request, Category $category, ImageRepository $imageRepository ) {
+        $fields = $request->validated();
+//        dd($fields);
+        $image = $fields['cat_image'] ?? null;
+        unset($fields['cat_image']);
 
+
+        if ( isset( $image ) && $category->image()->count()) {
+            FileStorageService::remove($category->image()->get()->first()->path);
+            $category->image()->delete();
+        }
+
+        $category->updateOrFail( $fields );
+        $imageRepository->attach( $category, 'image', [$image], 'category/' . $category->slug );
         return redirect()->route( 'admin.categories.edit', $category );
     }
 

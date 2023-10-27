@@ -68,21 +68,21 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="form-label" for="product-discount">Discount (0-100%)</label>
+                                                <label class="form-label" for="product-discount">Знижка (0-100%)</label>
                                                 <input type="number" step="1" min="0" max="100" class="form-control form-control-lg" id="product-discount" placeholder="Discount (0-100%)" name="discount" aria-describedby="product-discount-helper">
                                                 <div id="product-discount-helper" class="form-text">
                                                     <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <label class="form-label" for="product-quantity">Quantity</label>
+                                                <label class="form-label" for="product-quantity">Кількість</label>
                                                 <input type="number" step="1" min="1" class="form-control form-control-lg" id="product-quantity" placeholder="Quantity" name="quantity" aria-describedby="product-quantity-helper">
                                                 <div id="product-quantity-helper" class="form-text">
                                                     <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-3">
-                                                <label for="product-brand" class="form-label">Select brands</label>
+                                                <label for="product-brand" class="form-label">Бренд товару</label>
                                                 <select id="product-brand" class="form-select form-select-lg" name="brand_id">
                                                     @foreach($brands as $brand)
                                                         <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -91,7 +91,7 @@
                                                 <x-input-error :messages="$errors->get('brand_id')" class="mt-2" />
                                             </div>
                                             <div class="mt-2 mb-3">
-                                                <label for="product-parent" class="form-label">Select categories</label>
+                                                <label for="product-parent" class="form-label">Категорія</label>
                                                 <select id="product-parent" class="form-select form-select-lg" name="categories[]" multiple>
                                                     @foreach($categories as $category)
                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -109,7 +109,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="mt-2 mb-3">
-                                                <label for="thumbnail" class="form-label">Product thumbnail</label>
+                                                <label for="thumbnail" class="form-label">Основне зображення</label>
                                                 <input class="form-control" type="file" name="thumbnail" id="thumbnail">
                                                 <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                                             </div>
@@ -118,7 +118,7 @@
                                             </div>
 
                                             <div class="mt-2 mb-3">
-                                                <label for="images" class="form-label">Product Images</label>
+                                                <label for="images" class="form-label">Галерея зображень товару</label>
                                                 <input class="form-control" type="file" name="images[]" id="images" multiple>
                                                 <x-input-error :messages="$errors->get('images[]')" class="mt-2" />
                                             </div>

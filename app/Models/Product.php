@@ -78,7 +78,12 @@ class Product extends Model implements Buyable {
         'quantity',
         'thumbnail',
         'brand_id',
+        'has_variation'
     ];
+    /**
+     * @var Variation[]|null
+     */
+    private ?array $variations;
 
     public function scopeWithProductColor( Builder $query, int $colorId ): Builder {
         return $query
@@ -206,7 +211,7 @@ class Product extends Model implements Buyable {
 
     public function endPrice(): Attribute {
         return Attribute::get( function () {
-            $price = $this->attributes['price'];
+            $price    = $this->attributes['price'];
             $discount = $this->attributes['discount'] ?? 0;
 
             $endPrice = $discount === 0
@@ -236,5 +241,4 @@ class Product extends Model implements Buyable {
     public function getBuyableWeight( $options = null ) {
         return 0;
     }
-
 }

@@ -17,7 +17,7 @@
                         Введіть дані категорії
                     </h5>
                     <div class="card-body">
-                        <form action="{{ route('admin.categories.store') }}" method="POST">
+                        <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
                             <div>
@@ -45,7 +45,14 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('parent_id')" class="mt-2" />
                             </div>
-
+                            <div class="mt-2 mb-3">
+                                <label for="cat_image" class="form-label">Зображення</label>
+                                <input class="form-control" type="file" name="cat_image" id="cat_image">
+                                <x-input-error :messages="$errors->get('cat_image')" class="mt-2" />
+                            </div>
+                            <div class="mb-4">
+                                <img src="#" id="thumbnail-preview">
+                            </div>
                             <button type="submit" class="btn rounded-pill btn-primary">Створити</button>
                         </form>
                     </div>
