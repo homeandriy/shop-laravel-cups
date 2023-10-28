@@ -242,4 +242,13 @@ class Product extends Model implements Buyable {
     public function getBuyableWeight( $options = null ) {
         return 0;
     }
+    public function getVariationId(): ?int {
+        if($this->colors()->count()) {
+            return $this->colors()->get()->first()->id;
+        }
+        if($this->sizes()->count()) {
+            return $this->sizes()->get()->first()->id;
+        }
+        return null;
+    }
 }

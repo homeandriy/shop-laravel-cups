@@ -19,8 +19,8 @@ class CartController extends Controller {
             $addedProduct,
             $request->get( 'quantity', 1 ),
             [
-                'key'   => $request->product . '_' . $request->get( 'color' ),
-                'color' => $request->get( 'color' ),
+                'key'   => $request->product . '_' . $request->get( 'variationId' ),
+                'color' => $request->get( 'variationId' ),
                 'full'  => $addedProduct
             ]
         );
