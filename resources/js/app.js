@@ -83,7 +83,7 @@ $('.add-to-cart, .js-add-to-cart').on('click', function (event) {
     addToCart(
         $(this),
         $(this).data('product'),
-        $(this).data('color')
+        $(this).data('variation')
     );
 })
 

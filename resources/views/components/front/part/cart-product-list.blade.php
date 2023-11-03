@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Enums\Variation $variation
+ * @var \Gloudemans\Shoppingcart\CartItem $product
  */
 ?>
 @if(Cart::instance( 'cart' )->content()->isEmpty())
@@ -26,7 +27,7 @@
                             </g>
                         </svg>
                     </a>
-                    <a class="del" href="#">Видалити</a>
+                    <a href="#" class="del js-delete-product" data-product="{{ $product->rowId }}"  rel="nofollow noidex">Видалити</a>
                 </div>
             </div>
             <div class="price">
