@@ -13,7 +13,7 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function __invoke(Request $request)
+    public function main(Request $request)
     {
         return view('checkout.index');
     }

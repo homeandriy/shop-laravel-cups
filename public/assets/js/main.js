@@ -46,9 +46,10 @@ $(document).ready(function () {
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     arrows: true,
-    autoplaySpeed: 2000,
+    adaptiveHeight: false,
+    autoplaySpeed: 4000,
     prevArrow: '.features-wrapper .prev-arrow',
     nextArrow: '.features-wrapper .next-arrow',
     responsive: [{

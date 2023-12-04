@@ -5,13 +5,36 @@
  */
 ?>
 @if(Cart::instance( 'cart' )->content()->isEmpty())
-    <h2>Ваша корзина пуста</h2>
+    <div class="offcanvas-body d-flex flex-column">
+        <h2>Ваша корзина пуста</h2>
+    </div>
 @else
+    <div class="offcanvas-body d-flex flex-column">
+        <div class="shopping-cart">
     @foreach(Cart::instance( 'cart' )->content() as $product)
-        <div class="item">
-            @php
-                $variation = $product->model->variationColorData( !is_null($product->options->color) ? \App\Models\Attributes\Color::whereId($product->options->color)->get()->first() : \App\Models\Attributes\Color::first())
-            @endphp
+
+            <div class="shopping-cart-item d-flex justify-content-between mb-4">
+                    <div class="d-flex flex-row">
+                        <figure class="rounded w-17"><a href="./shop-product.html"><img src="./assets/img/photos/sth1.jpg" srcset="./assets/img/photos/sth1@2x.jpg 2x" alt="" /></a></figure>
+                        <div class="w-100 ms-4">
+                            <h3 class="post-title fs-16 lh-xs mb-1"><a href="./shop-product.html" class="link-dark">Nike Air Sneakers</a></h3>
+                            <p class="price fs-sm"><del><span class="amount">$55.00</span></del> <ins><span class="amount">$45.99</span></ins></p>
+                            <div class="form-select-wrapper">
+                                <select class="form-select form-select-sm">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <!--/.form-select-wrapper -->
+                        </div>
+                    </div>
+                    <div class="ms-2"><a href="#" class="link-dark"><i class="uil uil-trash-alt"></i></a></div>
+                </div>
+                <div class="item">
+
             <div class="image">
                 <img src="{{ $product->model->thumbnailUrl }}" alt="{{ $product->name }}">
             </div>
@@ -74,7 +97,19 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     @endforeach
+                </div>
+
+                <div class="offcanvas-footer flex-column text-center">
+                    <div class="d-flex w-100 justify-content-between mb-4">
+                        <span>Subtotal:</span>
+                        <span class="h6 mb-0">$135.99</span>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-icon btn-icon-start rounded w-100 mb-4"><i class="uil uil-credit-card fs-18"></i> Checkout</a>
+                    <p class="fs-14 mb-0">Free shipping on all orders over $50</p>
+                </div>
+        </div>
+    </div>
 @endif
 

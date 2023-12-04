@@ -38,21 +38,23 @@
                 <div class="row">
                     <div class="col-lg-7 order-2 order-lg-1">
                         <div class="deliver-info-form">
+                            @if(Auth::user())
+                            @else
+
+                            @endif
                             <h6>Вкажіть дані отримувача</h6>
                             <form action="#">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form__div">
-                                            <input type="text" class="form__input" placeholder="
-                                            ">
-                                            <label for="" class="form__label">First Name</label>
+                                            <input type="text" id="first-name" class="form__input" value="@if(Auth::user()) {{Auth::user()->name}}@endif">
+                                            <label for="#first-name" class="form__label">Ім'я</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form__div">
-                                            <input type="text" class="form__input" placeholder="
-                                            ">
-                                            <label for="" class="form__label">Last Name</label>
+                                            <input type="text" class="form__input" placeholder="" value="@if(Auth::user()) {{Auth::user()->surname}}@endif">
+                                            <label for="" class="form__label">Прізвище</label>
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +62,7 @@
                                     <div class="col-12">
                                         <div class="form__div">
                                             <input type="text" class="form__input" placeholder="">
-                                            <label for="" class="form__label">Phone</label>
+                                            <label for="" class="form__label">Телефон</label>
                                         </div>
                                     </div>
                                 </div>
@@ -109,14 +111,6 @@
                                 </div>
                                 <div class="price">
                                     <p>8%</p>
-                                </div>
-                            </div>
-                            <div class="card-price-list d-flex justify-content-between align-items-center">
-                                <div class="item">
-                                    <p>Taxes</p>
-                                </div>
-                                <div class="price">
-                                    <p>$5.49</p>
                                 </div>
                             </div>
                             <div class="card-price-subtotal d-flex justify-content-between align-items-center">

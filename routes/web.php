@@ -22,7 +22,7 @@ Route::name('products.')->prefix('products')->group(function (){
     Route::get('{product:slug}/{color:slug?}', [\App\Http\Controllers\ShopController::class, 'show'])->name('show');
 });
 
-Route::get('checkout', \App\Http\Controllers\CheckoutController::class)->name('checkout');
+Route::get('checkout', [\App\Http\Controllers\CheckoutController::class, 'main'])->name('checkout');
 Route::get('mail', function () {
     Mail::to( 'homeandriy@gmail.com' )
         ->send( new \App\Mail\MyTestEmail() );

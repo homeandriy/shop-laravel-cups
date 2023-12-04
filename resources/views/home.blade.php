@@ -9,61 +9,44 @@
 @section('keywords', 'Кружки, футболки')
 <x-app-layout>
     <!--Banner Area Start -->
-    <section class="banner-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 order-2 order-lg-1">
-                    <div class="banner-area__content">
-                        <h2>Кружки та футболки з унікальним дизайном</h2>
-                        <p>Купуйте в нашому магазині</p>
-                        <a class="btn bg-primary" href="{{ route('shop') }}">Вибрати підходящу</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2">
-                    <div class="banner-area__img">
-                        <img src="{{ asset('storage/dist/images/banner.jpg') }}" alt="banner-img" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="brand-area">
-                        <div class="brand-area-image">
-                            <img src="{{ asset('storage/dist/images/brand/01.png') }}" alt="Brand" class="img-fluid">
-                        </div>
-                        <div class="brand-area-image">
-                            <img src="{{ asset('storage/dist/images/brand/02.png') }}" alt="Brand" class="img-fluid">
-                        </div>
-                        <div class="brand-area-image">
-                            <img src="{{ asset('storage/dist/images/brand/03.png') }}" alt="Brand" class="img-fluid">
-                        </div>
-                        <div class="brand-area-image">
-                            <img src="{{ asset('storage/dist/images/brand/04.png') }}" alt="Brand" class="img-fluid">
-                        </div>
-                        <div class="brand-area-image">
-                            <img src="{{ asset('storage/dist/images/brand/02.png') }}" alt="Brand" class="img-fluid">
-                        </div>
-                        <div class="brand-area-image">
-                            <img src="{{ asset('storage/dist/images/brand/05.png') }}" alt="Brand" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="wrapper bg-light position-relative min-vh-70 d-lg-flex align-items-center">
+        <div class="rounded-4-lg-start col-lg-6 order-lg-2 position-lg-absolute top-0 end-0 image-wrapper bg-image bg-cover h-100 min-vh-50" data-image-src="./assets/img/photos/about16.jpg" style="background-image: url('./assets/img/photos/about16.jpg');">
         </div>
+        <!--/column -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mt-10 mt-md-11 mt-lg-n10 px-10 px-md-11 ps-lg-0 pe-lg-13 text-center text-lg-start" data-cues="slideInDown" data-group="page-title" data-delay="600" data-disabled="true">
+                        <h1 class="display-1 mb-5" data-cue="slideInDown" data-group="page-title" data-delay="600" data-show="true" style="animation-name: slideInDown; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 600ms; animation-direction: normal; animation-fill-mode: both;">Just sit &amp; relax while we take care of your business needs.</h1>
+                        <p class="lead fs-25 lh-sm mb-7 pe-md-10" data-cue="slideInDown" data-group="page-title" data-delay="600" data-show="true" style="animation-name: slideInDown; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 900ms; animation-direction: normal; animation-fill-mode: both;">We make your spending stress-free for you to have the perfect control.</p>
+                        <div class="d-flex justify-content-center justify-content-lg-start" data-cues="slideInDown" data-group="page-title-buttons" data-delay="900" data-cue="slideInDown" data-disabled="true" data-show="true" style="animation-name: slideInDown; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 900ms; animation-direction: normal; animation-fill-mode: both;">
+                            <span data-cue="slideInDown" data-group="page-title-buttons" data-delay="900" data-show="true" style="animation-name: slideInDown; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 1200ms; animation-direction: normal; animation-fill-mode: both;"><a href="#" class="btn btn-lg btn-primary rounded-pill me-2">Explore Now</a></span>
+                            <span data-cue="slideInDown" data-group="page-title-buttons" data-delay="900" data-show="true" style="animation-name: slideInDown; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 1500ms; animation-direction: normal; animation-fill-mode: both;"><a href="#" class="btn btn-lg btn-outline-primary rounded-pill">Contact Us</a></span>
+                        </div>
+                    </div>
+                    <!--/div -->
+                </div>
+                <!--/column -->
+            </div>
+            <!--/.row -->
+        </div>
+        <!-- /.container -->
     </section>
     <!--Banner Area End -->
 
     <!-- Features Section Start -->
-    <section class="features">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="section-title">
-                        <h2>Останні надходження</h2>
-                    </div>
+    <section class="wrapper bg-light">
+        <div class="container py-14 py-md-16">
+            <div class="row align-items-center mb-10 position-relative zindex-1">
+                <div class="col-md-8 col-lg-9 col-xl-8 col-xxl-7 pe-xl-20">
+                    <h2 class="display-6">Останні надходження</h2>
                 </div>
             </div>
-            <x-gallery-product :products="$productsFeatures"/>
+            <div class="grid grid-view projects-masonry shop mb-13">
+                <div class="row gx-md-8 gy-10 gy-md-13 isotope">
+                    <x-gallery-product :products="$productsFeatures"/>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="features-morebutton text-center">
@@ -74,110 +57,6 @@
         </div>
     </section>
     <!-- Features Section End -->
-
-    <!-- About Area Start -->
-    <section class="about-area">
-        <div class="container">
-            <div class="about-area-content">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 ">
-                        <div class="about-area-content-img">
-                            <img src="{{ asset('storage/dist/images/feature/medicine.jpg') }}" alt="img" class="img-fluid">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-area-content-text">
-                            <h3>Why Shop with Olog</h3>
-                            <p>Fortify your hair follicles, give thinning areas some volume, and treat your
-                                body’s
-                                skin like driving your dream car off the lot.</p>
-                            <div class="icon-area-content">
-                                <div class="icon-area">
-                                    <i class="far fa-check-circle"></i>
-                                    <span>Secure Payment Method.</span>
-                                </div>
-                                <div class="icon-area">
-                                    <i class="far fa-check-circle"></i>
-                                    <span>24/7 Customers Services.</span>
-                                </div>
-                                <div class="icon-area">
-                                    <i class="far fa-check-circle"></i>
-                                    <span>Shop in 2 languages</span>
-                                </div>
-                                <div class="icon-area">
-                                    <i class="far fa-check-circle"></i>
-                                    <span>Mauris congue eros in iaculis.</span>
-                                </div>
-                            </div>
-
-                            <a class="btn bg-primary" href="#">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About Area End -->
-
-    <!-- Populer Product Strat -->
-    <section class="populerproduct">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="section-title">
-                        <h2>Популярні товари</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($products as $product)
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-item">
-                            <div class="product-item-image">
-                                <a href="{{ route('products.show', $product) }}">
-                                    <img src="{{ $product->thumbnailUrl }}" alt="{{ $product->title }}" class="img-fluid">
-                                </a>
-                                <div class="cart-icon">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16.75" height="16.75"
-                                             viewBox="0 0 16.75 16.75">
-                                            <g id="Your_Bag" data-name="Your Bag" transform="translate(0.75)">
-                                                <g id="Icon" transform="translate(0 1)">
-                                                    <ellipse id="Ellipse_2" data-name="Ellipse 2" cx="0.682" cy="0.714"
-                                                             rx="0.682" ry="0.714" transform="translate(4.773 13.571)"
-                                                             fill="none" stroke="#1a2224" stroke-linecap="round"
-                                                             stroke-linejoin="round" stroke-width="1.5" />
-                                                    <ellipse id="Ellipse_3" data-name="Ellipse 3" cx="0.682" cy="0.714"
-                                                             rx="0.682" ry="0.714" transform="translate(12.273 13.571)"
-                                                             fill="none" stroke="#1a2224" stroke-linecap="round"
-                                                             stroke-linejoin="round" stroke-width="1.5" />
-                                                    <path id="Path_3" data-name="Path 3"
-                                                          d="M1,1H3.727l1.827,9.564a1.38,1.38,0,0,0,1.364,1.15h6.627a1.38,1.38,0,0,0,1.364-1.15L16,4.571H4.409"
-                                                          transform="translate(-1 -1)" fill="none" stroke="#1a2224"
-                                                          stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="1.5" />
-                                                </g>
-                                            </g>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product-item-info">
-                                <a href="{{ route('products.show', $product) }}">{{ $product->title }}</a>
-                                <span>${{ $product->endPrice }} ₴</span>
-                                @if($product->price !== $product->endPrice)
-                                    <del class="old-price">{{$product->price}} ₴</del>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    <!-- Populer Product End -->
-
     <!-- Categorys Section Start -->
     <section class="categorys">
         <div class="container">

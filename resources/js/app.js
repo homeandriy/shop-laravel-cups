@@ -1,5 +1,5 @@
-// import './scripts/run-jquery';
-import './bootstrap';
+import './scripts/run-jquery';
+// import './bootstrap';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
@@ -17,16 +17,10 @@ $('.sizes li').on('click', function () {
 
 
 //Active color
-$('.colors li').on('click', function () {
-    let colorId = $(this).parent('a').data('variation');
-    let productId = $(this).closest('.colors').eq(0).data('product');
-
-    /**
-     * Clear active
-     */
-    // $(this).addClass('active').siblings().removeClass('active');
-    $(this).closest('.colors').eq(0).find('li').removeClass('active');
-    $(this).addClass('active');
+$('input.variation-color').on('click', function () {
+    let colorId = $(this).parent('label').data('variation');
+    let productId = $(this).parent('label').data('product');
+    console.log(colorId, productId);
     /**
      * Add to cart
      */
@@ -51,6 +45,10 @@ function setStateToComponents(prodId, variation) {
      * Set Price
      */
     $(`.js-variation-name[data-product="${prodId}"]`).each((index, el) => $(el).text(`(${dataStorage[variation].name})`));
+    /**
+     * Set Link
+     */
+    $(`.js-variation-link[data-product="${prodId}"]`).each((index, el) => $(el).attr('href', ${dataStorage[variation].href}));
     /**
      * Set Discount Price
      */

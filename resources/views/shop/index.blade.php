@@ -5,160 +5,202 @@
 ?>
 <x-app-layout>
     <!-- BreadCrumb Start-->
-    <section class="breadcrumb-area mt-15">
-        <div class="container">
+    <section class="wrapper bg-gray">
+        <div class="container py-12 py-md-16 text-center">
             <div class="row">
-                <div class="col-lg-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Головна</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Продукція</li>
-                        </ol>
-                    </nav>
-                    <h5>Продукція</h5>
+                <div class="col-lg-10 col-xxl-8 mx-auto">
+                    <h1 class="display-1 mb-3">Каталог</h1>
+                    <p class="lead mb-1">Оберіть чашку на будь-який смак</p>
                 </div>
+                <!-- /column -->
             </div>
+            <!-- /.row -->
         </div>
+        <!-- /.container -->
     </section>
     <!-- BreadCrumb Start-->
-
-    <!-- Catagory Search Start -->
-    <section class="search">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="search-wrapper">
-                    <form class="search-wrapper-box">
-                        <input type="text" placeholder="Пошук тут">
-                        <button class="btn bg-primary" type="submit">Пошук</button>
-                    </form>
-                </div>
-            </div>
+    <section class="wrapper bg-gray mt-4">
+        <div class="container py-3 py-md-5">
+            <nav class="d-inline-block" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Головна</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Каталог</li>
+                </ol>
+            </nav>
+            <!-- /nav -->
         </div>
+        <!-- /.container -->
     </section>
-    <!-- Catagory Search End -->
-
-    <!-- Catagory item start -->
-    <section class="categoryitem">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="categoryitem-wrapper">
-                    <div class="categoryitem-wrapper-itembox">
-                        <h6>Категорія</h6>
-                        <select>
-                            <option data-display="Men">Men</option>
-                            <option value="1">Men</option>
-                            <option value="2">Men</option>
-                            <option value="4">Men</option>
-                        </select>
+    <section class="wrapper bg-light">
+        <div class="container pb-14 pb-md-16 pt-12">
+            <div class="row gy-10">
+                <div class="col-lg-9 order-lg-2">
+                    <div class="row align-items-center mb-10 position-relative zindex-1">
+                        <div class="col-md-7 col-xl-8 pe-xl-20">
+                            <h2 class="display-6 mb-1">New Arrivals</h2>
+                            <p class="mb-0 text-muted">Showing 1–9 of 30 results</p>
+                        </div>
+                        <!--/column -->
+                        <div class="col-md-5 col-xl-4 ms-md-auto text-md-end mt-5 mt-md-0">
+                            <div class="form-select-wrapper">
+                                <select class="form-select js-sort-by">
+                                    <option value="popularity">Sort by popularity</option>
+                                    <option value="rating">Sort by average rating</option>
+                                    <option value="newness">Sort by newness</option>
+                                    <option value="price: low to high">Sort by price: low to high</option>
+                                    <option value="price: high to low">Sort by price: high to low</option>
+                                </select>
+                            </div>
+                            <!--/.form-select-wrapper -->
+                        </div>
+                        <!--/column -->
                     </div>
-                    <div class="categoryitem-wrapper-itembox">
-                        <h6>Brand</h6>
-                        <select>
-                            <option data-display="Men">Men</option>
-                            <option value="1">Men</option>
-                            <option value="2">Men</option>
-                            <option value="4">Men</option>
-                        </select>
+                    <!--/.row -->
+                    <div class="grid grid-view projects-masonry shop mb-13">
+                        <div class="row gx-md-8 gy-10 gy-md-13 isotope">
+                            <x-gallery-product :products="$products"/>
+                        </div>
+                        <!-- /.row -->
                     </div>
-                    <div class="categoryitem-wrapper-price">
-                        <h6>Price</h6>
-                        <form class="price-item">
-                            <input type="number" placeholder="$ Min">
-                            <span>|</span>
-                            <input type="number" placeholder="$ Max">
-                        </form>
-                    </div>
-                    <div class="categoryitem-wrapper-itembox">
-                        <h6>Sort By</h6>
-                        <select>
-                            <option data-display="Men">Men</option>
-                            <option value="1">Men</option>
-                            <option value="2">Men</option>
-                            <option value="4">Men</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Catagory item End -->
-
-    <!-- Populer Product Strat -->
-    <section class="populerproduct bg-white p-0 shop-product">
-        <div class="container">
-            <div class="row">
-                @foreach($products as $product)
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product-item">
-                            <div class="product-item-image">
-                                <a href="{{ route('products.show', $product) }}">
-                                    <img src="{{ $product->thumbnailUrl }}" alt="{{ $product->title }}" class="img-fluid">
+                    <!-- /.grid -->
+                    <nav class="d-flex" aria-label="pagination">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="uil uil-arrow-left"></i></span>
                                 </a>
-                                <div class="cart-icon">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16.75" height="16.75"
-                                             viewBox="0 0 16.75 16.75">
-                                            <g id="Your_Bag" data-name="Your Bag" transform="translate(0.75)">
-                                                <g id="Icon" transform="translate(0 1)">
-                                                    <ellipse id="Ellipse_2" data-name="Ellipse 2" cx="0.682" cy="0.714"
-                                                             rx="0.682" ry="0.714" transform="translate(4.773 13.571)"
-                                                             fill="none" stroke="#1a2224" stroke-linecap="round"
-                                                             stroke-linejoin="round" stroke-width="1.5" />
-                                                    <ellipse id="Ellipse_3" data-name="Ellipse 3" cx="0.682" cy="0.714"
-                                                             rx="0.682" ry="0.714" transform="translate(12.273 13.571)"
-                                                             fill="none" stroke="#1a2224" stroke-linecap="round"
-                                                             stroke-linejoin="round" stroke-width="1.5" />
-                                                    <path id="Path_3" data-name="Path 3"
-                                                          d="M1,1H3.727l1.827,9.564a1.38,1.38,0,0,0,1.364,1.15h6.627a1.38,1.38,0,0,0,1.364-1.15L16,4.571H4.409"
-                                                          transform="translate(-1 -1)" fill="none" stroke="#1a2224"
-                                                          stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="1.5" />
-                                                </g>
-                                            </g>
-                                        </svg>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true"><i class="uil uil-arrow-right"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.pagination -->
+                    </nav>
+                    <!-- /nav -->
+                </div>
+                <!-- /column -->
+                <aside class="col-lg-3 sidebar">
+                    <div class="widget mt-1">
+                        <h4 class="widget-title mb-3">Категорії</h4>
+                        <ul class="list-unstyled ps-0">
+                            @foreach(\App\Models\Category::all() as $category)
+                                <li class="mb-1">
+                                    <a href="{{ route('shop.categories', $category->slug) }}" class="align-items-center rounded link-body" data-bs-toggle="collapse" data-bs-target="#clothing-collapse" aria-expanded="true"> {{ $category->name }} <span class="fs-sm text-muted ms-1">({{ $category->products()->count() }})</span>
                                     </a>
-                                </div>
-                            </div>
-                            <div class="product-item-info">
-                                <a href="{{ route('products.show', $product) }}">{{ $product->title }}</a>
-                                <span>${{ $product->endPrice }} ₴</span>
-                                @if($product->price !== $product->endPrice)
-                                    <del class="old-price">{{ $product->price }} ₴</del>
-                                @endif
-                            </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <!-- /.widget -->
+                    <div class="widget">
+                        <h4 class="widget-title mb-3">Rating</h4>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="rating" id="rating5" checked="">
+                            <label class="form-check-label" for="rating5">
+                                <span class="ratings five"></span>
+                            </label>
+                        </div>
+                        <!-- /.form-check -->
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="rating" id="rating4">
+                            <label class="form-check-label" for="rating4">
+                                <span class="ratings four"></span>
+                            </label>
+                        </div>
+                        <!-- /.form-check -->
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="rating" id="rating3">
+                            <label class="form-check-label" for="rating3">
+                                <span class="ratings three"></span>
+                            </label>
+                        </div>
+                        <!-- /.form-check -->
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="rating" id="rating2">
+                            <label class="form-check-label" for="rating2">
+                                <span class="ratings two"></span>
+                            </label>
+                        </div>
+                        <!-- /.form-check -->
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="rating" id="rating1">
+                            <label class="form-check-label" for="rating1">
+                                <span class="ratings one"></span>
+                            </label>
+                        </div>
+                        <!-- /.form-check -->
+                    </div>
+                    <!-- /.widget -->
+                    <div class="widget">
+                        <h4 class="widget-title mb-3">Size</h4>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="xs" checked="">
+                            <label class="form-check-label" for="xs">XS <span class="fs-sm text-muted ms-1">(23)</span></label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="s">
+                            <label class="form-check-label" for="s">S <span class="fs-sm text-muted ms-1">(253)</span></label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="m">
+                            <label class="form-check-label" for="m">M <span class="fs-sm text-muted ms-1">(65)</span></label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="l">
+                            <label class="form-check-label" for="l">L <span class="fs-sm text-muted ms-1">(156)</span></label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="xl">
+                            <label class="form-check-label" for="xl">XL <span class="fs-sm text-muted ms-1">(74)</span></label>
                         </div>
                     </div>
-                @endforeach
+                    <!-- /.widget -->
+                    <div class="widget">
+                        <h4 class="widget-title mb-3">Price</h4>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="price" id="price1" checked="">
+                            <label class="form-check-label" for="price1"> $0.00 - $50.00 </label>
+                        </div>
+                        <!-- /.form-check -->
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="price" id="price2">
+                            <label class="form-check-label" for="price2"> $0.00 - $50.00 </label>
+                        </div>
+                        <!-- /.form-check -->
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="price" id="price3">
+                            <label class="form-check-label" for="price3"> $50.00 - $100.00 </label>
+                        </div>
+                        <!-- /.form-check -->
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="radio" name="price" id="price4">
+                            <label class="form-check-label" for="price4"> $150.00 - $200.00 </label>
+                        </div>
+                        <!-- /.form-check -->
+                        <div class="row">
+                            <div class="col-7 col-md-5 col-lg-12 col-xl-10 col-xxl-10">
+                                <div class="d-flex align-items-center mt-4">
+                                    <input type="number" class="form-control form-control-sm" placeholder="$0.00" min="0">
+                                    <div class="text-muted mx-2">‒</div>
+                                    <input type="number" class="form-control form-control-sm" placeholder="$50.00" max="50">
+                                </div>
+                            </div>
+                            <!-- /column -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.widget -->
+                </aside>
+                <!-- /column .sidebar -->
             </div>
+            <!-- /.row -->
         </div>
+        <!-- /.container -->
     </section>
-    <!-- Populer Product End -->
-
-    <!-- Pagination Start -->
-    <section class="pagination">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="pagination-group">
-                    <a href="#!-1" class="p_prev"><svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.828" viewBox="0 0 9.414 16.828">
-                            <path id="Icon_feather-chevron-left" data-name="Icon feather-chevron-left" d="M20.5,23l-7-7,7-7" transform="translate(-12.5 -7.586)" fill="none" stroke="#1a2224" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                        </svg></a>
-                    <a href="#!1" class="cdp_i active">01</a>
-                    <a href="#!2" class="cdp_i">02</a>
-                    <a href="#!3" class="cdp_i">03</a>
-                    <a href="#!4" class="cdp_i">...</a>
-                    <a href="#!5" class="cdp_i">658</a>
-                    <a href="#!+1" class="p_next">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="9.414" height="16.829" viewBox="0 0 9.414 16.829">
-                            <g id="Arrow" transform="translate(1.414 15.414) rotate(-90)">
-                                <path id="Arrow-2" data-name="Arrow" d="M1474.286,26.4l7,7,7-7" transform="translate(-1474.286 -26.4)" fill="none" stroke="#1a2224" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                            </g>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Pagination End -->
 
 </x-app-layout>

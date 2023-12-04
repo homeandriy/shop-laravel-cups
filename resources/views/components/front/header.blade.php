@@ -1,287 +1,168 @@
-<!-- Header Area Start -->
-<header class="header">
-    <div class="header-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="header-top-wrapper">
-                        <div class="header-top-info">
-                            <div class="email">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16.95" height="13.4"
-                                         viewBox="0 0 16.95 13.4">
-                                        <g id="Mail" transform="translate(0.975 0.7)">
-                                            <path id="Path_1" data-name="Path 1"
-                                                  d="M3.5,4h12A1.5,1.5,0,0,1,17,5.5v9A1.5,1.5,0,0,1,15.5,16H3.5A1.5,1.5,0,0,1,2,14.5v-9A1.5,1.5,0,0,1,3.5,4Z"
-                                                  transform="translate(-2 -4)" fill="none" stroke="#1a2224"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" />
-                                            <path id="Path_2" data-name="Path 2" d="M17,6,9.5,11.25,2,6"
-                                                  transform="translate(-2 -4.5)" fill="none" stroke="#1a2224"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" />
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="text">
-                                    <span>{{ env('ADMIN_EMAIL', 'admin@'.request()->getHost()) }}</span>
-                                </div>
-                            </div>
-                            <div class="cta">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13.401" height="13.401"
-                                         viewBox="0 0 13.401 13.401">
-                                        <g id="Phone_Icon" data-name="Phone Icon" transform="translate(0.7 0.7)">
-                                            <path id="Phone_Icon-2" data-name="Phone Icon"
-                                                  d="M14.111,10.984v1.806A1.206,1.206,0,0,1,12.8,14a11.956,11.956,0,0,1-5.207-1.849,11.754,11.754,0,0,1-3.62-3.613A11.9,11.9,0,0,1,2.117,3.313,1.205,1.205,0,0,1,3.317,2h1.81A1.206,1.206,0,0,1,6.334,3.036a7.719,7.719,0,0,0,.422,1.692A1.2,1.2,0,0,1,6.485,6l-.766.765a9.644,9.644,0,0,0,3.62,3.613l.766-.765a1.208,1.208,0,0,1,1.273-.271,7.76,7.76,0,0,0,1.7.422,1.205,1.205,0,0,1,1.038,1.222Z"
-                                                  transform="translate(-2.112 -2)" fill="none" stroke="#1a2224"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" />
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="text">
-                                    <span>{{ env('PHONE_KYIVSTAR') }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="header-top-switcher">
-                        </div>
-                    </div>
-                </div>
+<header class="wrapper bg-light">
+    <nav class="navbar navbar-expand-lg center-nav navbar-light navbar-bg-light">
+        <div class="container flex-lg-row flex-nowrap align-items-center">
+            <div class="navbar-brand w-100">
+                <a href="{{ route('home') }}">
+                    <img src="./assets/img/logo.png" srcset="./assets/img/logo@2x.png 2x" alt="" />
+                </a>
             </div>
-        </div>
-    </div>
-    <div class="header-bottom">
-        <div class="container">
-            <div class="d-none d-lg-block">
-                <nav class="menu-area d-flex align-items-center">
-                    <div class="logo">
-                        <a href="{{ route('home') }}"><img src="{{ asset('storage/dist/images/logo/logo.png')}}" alt="{{ config('app.name', 'Cup shop') }}" /></a>
-                    </div>
-                    <ul class="main-menu d-flex align-items-center">
-                        <li><a class="active" href="{{ route('home') }}">Головна</a></li>
-                        <li>
-                            <a href="{{ route('shop') }}">Продукція
-                                <svg xmlns="http://www.w3.org/2000/svg" width="9.98" height="5.69"
-                                     viewBox="0 0 9.98 5.69">
-                                    <g id="Arrow" transform="translate(0.99 0.99)">
-                                        <path id="Arrow-2" data-name="Arrow" d="M1474.286,26.4l4,4,4-4"
-                                              transform="translate(-1474.286 -26.4)" fill="none" stroke="#1a2224"
-                                              stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" />
-                                    </g>
-                                </svg>
-                            </a>
-                            <ul class="sub-menu">
-                                @foreach(\App\Models\Category::all() as $category)
-                                    <li><a href="/shop/{{ $category->slug }}">{{ $category->name }}</a></li>
-                                @endforeach
-                            </ul>
+            <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
+                <div class="offcanvas-header d-lg-none">
+                    <h3 class="text-white fs-30 mb-0">Double cats</h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown dropdown-mega">
+                            <a class="nav-link" href="{{route('home')}}">Головна</a>
                         </li>
-                        <li><a href="{{ route('shop') }}">Блог</a></li>
-                        <li><a href="{{ route('shop') }}">Створити дизайн</a></li>
-                        <li><a href="{{ route('shop') }}">Контакти</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{route('shop')}}">Каталог</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{route('shop')}}">Свій дизайн</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{route('shop')}}">Блог</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{route('shop')}}">Про нас</a>
+                        </li>
                     </ul>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Пошук по каталогу....">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20.414" height="20.414"
-                                 viewBox="0 0 20.414 20.414">
-                                <g id="Search_Icon" data-name="Search Icon" transform="translate(1 1)">
-                                    <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="8.158" cy="8" rx="8.158"
-                                             ry="8" fill="none" stroke="#1a2224" stroke-linecap="round"
-                                             stroke-linejoin="round" stroke-width="2" />
-                                    <line id="Line_4" data-name="Line 4" x1="3.569" y1="3.5"
-                                          transform="translate(14.431 14.5)" fill="none" stroke="#1a2224"
-                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                </g>
-                            </svg>
+                    <!-- /.navbar-nav -->
+                    <div class="offcanvas-footer d-lg-none">
+                        <div>
+                            <a href="mailto:first.last@email.com" class="link-inverse">info@email.com</a>
+                            <br /> 00 (123) 456 78 90 <br />
+                            <nav class="nav social social-white mt-4">
+                                <a href="#"><i class="uil uil-twitter"></i></a>
+                                <a href="#"><i class="uil uil-facebook-f"></i></a>
+                                <a href="#"><i class="uil uil-dribbble"></i></a>
+                                <a href="#"><i class="uil uil-instagram"></i></a>
+                                <a href="#"><i class="uil uil-youtube"></i></a>
+                            </nav>
+                            <!-- /.social -->
                         </div>
                     </div>
-                    <div class="menu-icon ml-auto">
-                        <ul>
-                            <li>
-                                <a href="{{ route('wishlist') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20"
-                                         viewBox="0 0 22 20">
-                                        <g id="Heart" transform="translate(1 1)">
-                                            <path id="Heart-2" data-name="Heart"
-                                                  d="M20.007,4.59a5.148,5.148,0,0,0-7.444,0L11.548,5.636,10.534,4.59a5.149,5.149,0,0,0-7.444,0,5.555,5.555,0,0,0,0,7.681L4.1,13.317,11.548,21l7.444-7.681,1.014-1.047a5.553,5.553,0,0,0,0-7.681Z"
-                                                  transform="translate(-1.549 -2.998)" fill="#fff" stroke="#1a2224"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                        </g>
-                                    </svg>
-                                    <span class="heart">{{ Cart::instance('wishlist')->countItems() ?? 0 }}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cart-right" aria-controls="cart-right">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                         viewBox="0 0 22 22">
-                                        <g id="Icon" transform="translate(-1524 -89)">
-                                            <ellipse id="Ellipse_2" data-name="Ellipse 2" cx="0.909" cy="0.952"
-                                                     rx="0.909" ry="0.952" transform="translate(1531.364 108.095)"
-                                                     fill="none" stroke="#1a2224" stroke-linecap="round"
-                                                     stroke-linejoin="round" stroke-width="2" />
-                                            <ellipse id="Ellipse_3" data-name="Ellipse 3" cx="0.909" cy="0.952"
-                                                     rx="0.909" ry="0.952" transform="translate(1541.364 108.095)"
-                                                     fill="none" stroke="#1a2224" stroke-linecap="round"
-                                                     stroke-linejoin="round" stroke-width="2" />
-                                            <path id="Path_3" data-name="Path 3"
-                                                  d="M1,1H4.636L7.073,13.752a1.84,1.84,0,0,0,1.818,1.533h8.836a1.84,1.84,0,0,0,1.818-1.533L21,5.762H5.545"
-                                                  transform="translate(1524 89)" fill="none" stroke="#1a2224"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                        </g>
-                                    </svg>
-                                    <span class="cart" id="cart-amount">{{ Cart::instance('cart')->countItems() ?? 0 }}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ Auth::user() ? route('profile.edit') : route('login') }}"><svg xmlns="http://www.w3.org/2000/svg" width="18"
-                                                            height="20" viewBox="0 0 18 20">
-                                        <g id="Account" transform="translate(1 1)">
-                                            <path id="Path_86" data-name="Path 86"
-                                                  d="M20,21V19a4,4,0,0,0-4-4H8a4,4,0,0,0-4,4v2"
-                                                  transform="translate(-4 -3)" fill="none" stroke="#000"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                            <circle id="Ellipse_9" data-name="Ellipse 9" cx="4" cy="4" r="4"
-                                                    transform="translate(4)" fill="#fff" stroke="#000"
-                                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                        </g>
-                                    </svg></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+                    <!-- /.offcanvas-footer -->
+                </div>
+                <!-- /.offcanvas-body -->
             </div>
-            <!-- Mobile Menu -->
-            <aside class="d-lg-none">
-                <div id="mySidenav" class="sidenav">
-                    <div class="close-mobile-menu">
-                        <a href="javascript:void(0)" id="menu-close" class="closebtn"
-                           onclick="closeNav()">&times;</a>
-                    </div>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search for product...">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20.414" height="20.414"
-                                 viewBox="0 0 20.414 20.414">
-                                <g id="Search_Icon" data-name="Search Icon" transform="translate(1 1)">
-                                    <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="8.158" cy="8" rx="8.158"
-                                             ry="8" fill="none" stroke="#1a2224" stroke-linecap="round"
-                                             stroke-linejoin="round" stroke-width="2" />
-                                    <line id="Line_4" data-name="Line 4" x1="3.569" y1="3.5"
-                                          transform="translate(14.431 14.5)" fill="none" stroke="#1a2224"
-                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Men</a></li>
-                    <li><a href="shop.html">Women</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li>
-                        <a href="javascript:void(0)">Category
-                            <svg xmlns="http://www.w3.org/2000/svg" width="9.98" height="5.69"
-                                 viewBox="0 0 9.98 5.69">
-                                <g id="Arrow" transform="translate(0.99 0.99)">
-                                    <path id="Arrow-2" data-name="Arrow" d="M1474.286,26.4l4,4,4-4"
-                                          transform="translate(-1474.286 -26.4)" fill="none" stroke="#1a2224"
-                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" />
-                                </g>
-                            </svg>
+            <!-- /.navbar-collapse -->
+            <div class="navbar-other w-100 d-flex ms-auto">
+                <ul class="navbar-nav flex-row align-items-center ms-auto">
+                    <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-search"><i class="uil uil-search"></i></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative d-flex flex-row align-items-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart">
+                            <i class="uil uil-shopping-cart"></i>
+                            <span class="badge badge-cart bg-primary">3</span>
                         </a>
-                        <ul class="sub-menu">
-                            <li><a href="javascript:void(0)">Category 1</a></li>
-                            <li><a href="javascript:void(0)">Category 2</a></li>
-                            <li><a href="javascript:void(0)">Category 3</a></li>
-                            <li><a href="javascript:void(0)">Category 4</a></li>
-                            <li><a href="javascript:void(0)">Category 5</a></li>
-                        </ul>
                     </li>
-                    <li><a href="javascript:void(0)">Sales</a></li>
-                </div>
-                <div class="mobile-nav d-flex align-items-center justify-content-between">
-                    <div class="logo">
-                        <a href="{{ route('home') }}"><img src="{{ asset('storage/dist/images/logo/logo.png') }}" alt="logo" /></a>
-                    </div>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search for product...">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20.414" height="20.414"
-                                 viewBox="0 0 20.414 20.414">
-                                <g id="Search_Icon" data-name="Search Icon" transform="translate(1 1)">
-                                    <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="8.158" cy="8" rx="8.158"
-                                             ry="8" fill="none" stroke="#1a2224" stroke-linecap="round"
-                                             stroke-linejoin="round" stroke-width="2" />
-                                    <line id="Line_4" data-name="Line 4" x1="3.569" y1="3.5"
-                                          transform="translate(14.431 14.5)" fill="none" stroke="#1a2224"
-                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                </g>
-                            </svg>
+                    <li class="nav-item d-lg-none">
+                        <button class="hamburger offcanvas-nav-btn"><span></span></button>
+                    </li>
+                </ul>
+                <!-- /.navbar-nav -->
+            </div>
+            <!-- /.navbar-other -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- /.navbar -->
+    <div class="offcanvas offcanvas-end bg-light" id="offcanvas-cart" data-bs-scroll="true">
+        <div class="offcanvas-header">
+            <h3 class="mb-0">Кошик</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <div class="shopping-cart">
+                <div class="shopping-cart-item d-flex justify-content-between mb-4">
+                    <div class="d-flex flex-row">
+                        <figure class="rounded w-17"><a href="./shop-product.html"><img src="./assets/img/photos/sth1.jpg" srcset="./assets/img/photos/sth1@2x.jpg 2x" alt="" /></a></figure>
+                        <div class="w-100 ms-4">
+                            <h3 class="post-title fs-16 lh-xs mb-1"><a href="./shop-product.html" class="link-dark">Nike Air Sneakers</a></h3>
+                            <p class="price fs-sm"><del><span class="amount">$55.00</span></del> <ins><span class="amount">$45.99</span></ins></p>
+                            <div class="form-select-wrapper">
+                                <select class="form-select form-select-sm">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <!--/.form-select-wrapper -->
                         </div>
                     </div>
-                    <div class="menu-icon">
-                        <ul>
-                            <li> <a href="wishlist.html">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20"
-                                         viewBox="0 0 22 20">
-                                        <g id="Heart" transform="translate(1 1)">
-                                            <path id="Heart-2" data-name="Heart"
-                                                  d="M20.007,4.59a5.148,5.148,0,0,0-7.444,0L11.548,5.636,10.534,4.59a5.149,5.149,0,0,0-7.444,0,5.555,5.555,0,0,0,0,7.681L4.1,13.317,11.548,21l7.444-7.681,1.014-1.047a5.553,5.553,0,0,0,0-7.681Z"
-                                                  transform="translate(-1.549 -2.998)" fill="#fff" stroke="#1a2224"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                        </g>
-                                    </svg>
-                                    <span class="heart">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="cart.html">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                         viewBox="0 0 22 22">
-                                        <g id="Icon" transform="translate(-1524 -89)">
-                                            <ellipse id="Ellipse_2" data-name="Ellipse 2" cx="0.909" cy="0.952"
-                                                     rx="0.909" ry="0.952" transform="translate(1531.364 108.095)"
-                                                     fill="none" stroke="#1a2224" stroke-linecap="round"
-                                                     stroke-linejoin="round" stroke-width="2" />
-                                            <ellipse id="Ellipse_3" data-name="Ellipse 3" cx="0.909" cy="0.952"
-                                                     rx="0.909" ry="0.952" transform="translate(1541.364 108.095)"
-                                                     fill="none" stroke="#1a2224" stroke-linecap="round"
-                                                     stroke-linejoin="round" stroke-width="2" />
-                                            <path id="Path_3" data-name="Path 3"
-                                                  d="M1,1H4.636L7.073,13.752a1.84,1.84,0,0,0,1.818,1.533h8.836a1.84,1.84,0,0,0,1.818-1.533L21,5.762H5.545"
-                                                  transform="translate(1524 89)" fill="none" stroke="#1a2224"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                        </g>
-                                    </svg>
-                                    <span class="cart">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account.html">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20"
-                                         viewBox="0 0 18 20">
-                                        <g id="Account" transform="translate(1 1)">
-                                            <path id="Path_86" data-name="Path 86"
-                                                  d="M20,21V19a4,4,0,0,0-4-4H8a4,4,0,0,0-4,4v2"
-                                                  transform="translate(-4 -3)" fill="none" stroke="#000"
-                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                            <circle id="Ellipse_9" data-name="Ellipse 9" cx="4" cy="4" r="4"
-                                                    transform="translate(4)" fill="#fff" stroke="#000"
-                                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                        </g>
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="hamburger-menu">
-                        <a style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</a>
-                    </div>
+                    <div class="ms-2"><a href="#" class="link-dark"><i class="uil uil-trash-alt"></i></a></div>
                 </div>
-            </aside>
-            <!-- Body overlay -->
-            <div class="overlay" id="overlayy"></div>
+                <!--/.shopping-cart-item -->
+                <div class="shopping-cart-item d-flex justify-content-between mb-4">
+                    <div class="d-flex flex-row">
+                        <figure class="rounded w-17"><a href="./shop-product.html"><img src="./assets/img/photos/sth2.jpg" srcset="./assets/img/photos/sth2@2x.jpg 2x" alt="" /></a></figure>
+                        <div class="w-100 ms-4">
+                            <h3 class="post-title fs-16 lh-xs mb-1"><a href="./shop-product.html" class="link-dark">Colorful Sneakers</a></h3>
+                            <p class="price fs-sm"><span class="amount">$45.00</span></p>
+                            <div class="form-select-wrapper">
+                                <select class="form-select form-select-sm">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <!--/.form-select-wrapper -->
+                        </div>
+                    </div>
+                    <div class="ms-2"><a href="#" class="link-dark"><i class="uil uil-trash-alt"></i></a></div>
+                </div>
+                <!--/.shopping-cart-item -->
+                <div class="shopping-cart-item d-flex justify-content-between mb-4">
+                    <div class="d-flex flex-row">
+                        <figure class="rounded w-17"><a href="./shop-product.html"><img src="./assets/img/photos/sth3.jpg" srcset="./assets/img/photos/sth3@2x.jpg 2x" alt="" /></a></figure>
+                        <div class="w-100 ms-4">
+                            <h3 class="post-title fs-16 lh-xs mb-1"><a href="./shop-product.html" class="link-dark">Polaroid Camera</a></h3>
+                            <p class="price fs-sm"><span class="amount">$45.00</span></p>
+                            <div class="form-select-wrapper">
+                                <select class="form-select form-select-sm">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <!--/.form-select-wrapper -->
+                        </div>
+                    </div>
+                    <div class="ms-2"><a href="#" class="link-dark"><i class="uil uil-trash-alt"></i></a></div>
+                </div>
+                <!--/.shopping-cart-item -->
+            </div>
+            <!-- /.shopping-cart-->
+            <div class="offcanvas-footer flex-column text-center">
+                <div class="d-flex w-100 justify-content-between mb-4">
+                    <span>Subtotal:</span>
+                    <span class="h6 mb-0">$135.99</span>
+                </div>
+                <a href="#" class="btn btn-primary btn-icon btn-icon-start rounded w-100 mb-4"><i class="uil uil-credit-card fs-18"></i> Checkout</a>
+                <p class="fs-14 mb-0">Free shipping on all orders over $50</p>
+            </div>
+            <!-- /.offcanvas-footer-->
         </div>
+        <!-- /.offcanvas-body -->
     </div>
+    <!-- /.offcanvas -->
+    <div class="offcanvas offcanvas-top bg-light" id="offcanvas-search" data-bs-scroll="true">
+        <div class="container d-flex flex-row py-6">
+            <form class="search-form w-100">
+                <input id="search-form" type="text" class="form-control" placeholder="Type keyword and hit enter">
+            </form>
+            <!-- /.search-form -->
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.offcanvas -->
 </header>
-<!-- Header Area End -->

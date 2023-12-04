@@ -7,9 +7,9 @@
 $jsonVariations = [];
 $hasVariation = false;
 @endphp
-<div class="product-item-info product-pricelist-selector-color" >
+<div>
     @if($product->colors()->count())
-        <div class="colors" data-product="{{$product->id}}">
+        <fieldset class="picker" data-product="{{$product->id}}">
             @php
                 $color = $product->colors()->get()->first();
 				$hasVariation = true;
@@ -38,30 +38,26 @@ $hasVariation = false;
                 }
                 $i++;
                 @endphp
-                <a href="#variation-{{$colorVariation->pivot->color_id}}" data-variation="{{$colorVariation->pivot->color_id}}" @disabled($inStock)>
-                    <li class="variation-cell colorall @if($colorVariation->pivot->color_id === $color->id) active @endif" style="background-color: {{$colorVariation->hex}}" title="{{ $color->name }}"></li>
-                </a>
+                <label for="color-{{$product->id}}_{{$colorVariation->pivot->color_id}}" style="--color:{{$colorVariation->hex}}">
+                    <input type="radio" name="colors" id="color-{{$product->id}}_{{$colorVariation->pivot->color_id}}" checked="">
+                    <span>{{ $color->name }}</span>
+                </label>
             @endforeach
             <script>
                 var variation_{{$product->id}} =@php echo json_encode($jsonVariations) @endphp
             </script>
-            <style>
-                .variation-cell, .variation-cell.active {
-                    border-radius: 50%!important;
-                    width: 20px!important;
-                    height: 20px!important;
-                    margin-right: 8px!important;
-                }
-            </style>
-        </div>
+        </fieldset>
         <a href="{{ route('products.show', [$product, $colorVariation->slug]) }}">
             {{ $product->title }}
             <span class="variation-color js-variation-name" data-product="{{$product->id}}">({{ $color->name }})</span>
         </a>
-        <span><span class="js-product-price" data-product="{{$product->id}}">{{ $variation ? $variation['price'] : $product->endPrice }}</span> ₴</span>
-        @if($product->price !== $product->endPrice)
-            <del><span class="old-price js-product-old-price" data-product="{{$product->id}}">{{$product->price}}</span> ₴</del>
-        @endif
+        <div>
+            <span class="text-price">Ціна:</span>
+            <span class="price"><span class="js-product-price" data-product="{{$product->id}}">{{ $variation ? $variation['price'] : $product->endPrice }}</span>₴</span>
+            @if($product->price !== $product->endPrice)
+                <del class="old-price"><span class="js-product-old-price" data-product="{{$product->id}}">{{$product->price}}</span>₴</del>
+            @endif
+        </div>
     @endif
     @if($product->sizes->count())
 

@@ -1,101 +1,77 @@
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row align-items-center newsletter-area">
-            <div class="col-lg-5">
-                <div class="newsletter-area-text">
-                    <h4 class="text-white">Subscribe to get notification.</h4>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </p>
+<footer class="bg-dark text-inverse">
+    <div class="container py-13 py-md-15">
+        <div class="row gy-6 gy-lg-0">
+            <div class="col-md-4 col-lg-3">
+                <div class="widget">
+                    <img class="mb-4" src="./assets/img/logo-light.png" srcset="./assets/img/logo-light@2x.png 2x" alt="" />
+                    <p class="mb-4">© 2023 Sandbox. <br class="d-none d-lg-block" />All rights reserved.</p>
+                    <nav class="nav social social-white">
+                        <a href="#"><i class="uil uil-twitter"></i></a>
+                        <a href="#"><i class="uil uil-facebook-f"></i></a>
+                        <a href="#"><i class="uil uil-dribbble"></i></a>
+                        <a href="#"><i class="uil uil-instagram"></i></a>
+                        <a href="#"><i class="uil uil-youtube"></i></a>
+                    </nav>
+                    <!-- /.social -->
                 </div>
+                <!-- /.widget -->
             </div>
-            <div class="col-lg-6 offset-lg-1">
-                <div class="newsletter-area-button">
-                    <form action="#">
-                        <div class="form">
-                            <input type="email" name="email" id="mail" placeholder="Enter your email address"
-                                   class="form-control">
-                            <button class="btn bg-secondary border text-capitalize">Subscribe</button>
-                        </div>
-                    </form>
+            <!-- /column -->
+            <div class="col-md-4 col-lg-3">
+                <div class="widget">
+                    <h4 class="widget-title text-white mb-3">Get in Touch</h4>
+                    <address class="pe-xl-15 pe-xxl-17">Moonshine St. 14/05 Light City, London, United Kingdom</address>
+                    <a href="mailto:#">info@email.com</a><br /> 00 (123) 456 78 90
                 </div>
+                <!-- /.widget -->
             </div>
-        </div>
-        <div class="row main-footer">
-            <div class="col-lg-4 col-md-12 col-sm-12 col-12">
-                <div class="main-footer-info">
-                    <img src="{{ asset('storage/dist/images/logo/white.png') }}" alt="Logo" class="img-fluid">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam molestie malesuada
-                        metus, non molestie ligula laoreet vitae. Ut et fringilla risus, vel.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-2 offset-lg-2 col-md-4 col-sm-6 col-12">
-                <div class="main-footer-quicklinks">
-                    <h6>Company</h6>
-                    <ul class="quicklink">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Help &amp; Support</a></li>
+            <!-- /column -->
+            <div class="col-md-4 col-lg-3">
+                <div class="widget">
+                    <h4 class="widget-title text-white mb-3">Learn More</h4>
+                    <ul class="list-unstyled  mb-0">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Terms of Use</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
+                <!-- /.widget -->
             </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                <div class="main-footer-quicklinks">
-                    <h6>Quick links</h6>
-                    <ul class="quicklink">
-                        <li><a href="#">New Realease</a></li>
-                        <li><a href="#">Customize</a></li>
-                        <li><a href="#">Sale &amp; Discount</a></li>
-                        <li><a href="#">Men</a></li>
-                        <li><a href="#">Women</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                <div class="main-footer-quicklinks">
-                    <h6>Account</h6>
-                    <ul class="quicklink">
-                        <li><a href="#">Your Bag</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Order Completed</a></li>
-                        <li><a href="#">Log-out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="copyright d-flex justify-content-between align-items-center">
-                    <div class="copyright-text order-2 order-lg-1">
-                        <p>&copy; 2020. Design and Developed by <a href="#">Zakir Soft</a></p>
+            <!-- /column -->
+            <div class="col-md-12 col-lg-3">
+                <div class="widget">
+                    <h4 class="widget-title text-white mb-3">Our Newsletter</h4>
+                    <p class="mb-5">Subscribe to our newsletter to get our news & deals delivered to you.</p>
+                    <div class="newsletter-wrapper">
+                        <!-- Begin Mailchimp Signup Form -->
+                        <div id="mc_embed_signup2">
+                            <form action="https://elemisfreebies.us20.list-manage.com/subscribe/post?u=aa4947f70a475ce162057838d&amp;id=b49ef47a9a" method="post" id="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form" class="validate dark-fields" target="_blank" novalidate>
+                                <div id="mc_embed_signup_scroll2">
+                                    <div class="mc-field-group input-group form-floating">
+                                        <input type="email" value="" name="EMAIL" class="required email form-control" placeholder="Email Address" id="mce-EMAIL2">
+                                        <label for="mce-EMAIL2">Email Address</label>
+                                        <input type="submit" value="Join" name="subscribe" id="mc-embedded-subscribe2" class="btn btn-primary ">
+                                    </div>
+                                    <div id="mce-responses2" class="clear">
+                                        <div class="response" id="mce-error-response2" style="display:none"></div>
+                                        <div class="response" id="mce-success-response2" style="display:none"></div>
+                                    </div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc" tabindex="-1" value=""></div>
+                                    <div class="clear"></div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--End mc_embed_signup-->
                     </div>
-                    <div class="copyright-links order-1 order-lg-2">
-                        <a href="#" class="ml-0"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
+                    <!-- /.newsletter-wrapper -->
                 </div>
+                <!-- /.widget -->
             </div>
+            <!-- /column -->
         </div>
+        <!--/.row -->
     </div>
-    @include('components.front.cart')
-    @include('components.front.wishlist')
+    <!-- /.container -->
 </footer>
-<!-- Footer -->
-<script>
-    function openNav() {
-
-        document.getElementById("mySidenav").style.width = "350px";
-        $('#overlayy').addClass("active");
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        $('#overlayy').removeClass("active");
-    }
-</script>
